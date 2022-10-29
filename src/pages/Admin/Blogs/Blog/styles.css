@@ -1,0 +1,54 @@
+.blog__management-container {
+    display: flex;
+    border: 1px solid black;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    justify-content: space-between;
+}
+
+.blog__management-left {
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog__management-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.blog__management-like {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.blog__management-comment {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.blog__management-view {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.blog__management-statistic {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.blog__management-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.blog__management-time {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}

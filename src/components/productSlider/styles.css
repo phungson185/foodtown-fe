@@ -1,0 +1,98 @@
+.product__slideshow {
+    display: flex;
+}
+
+.menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+    border-radius: 8px;
+    padding: 2rem 2rem 2.5rem 2rem;
+    margin-top: 9rem;
+    color: white !important;
+}
+
+.product__info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-height: 460px;
+}
+
+.product__info-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.product__info-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product__info-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.product__info-image {
+    border-radius: 8px;
+}
+
+.product__info-name {
+    font-size: 3rem;
+}
+
+.product__info-description {
+    font-size: 1.2rem;
+}
+
+.product__info-price {
+    font-size: 1.2rem;
+}
+
+.product__info-ingredients {
+    font-size: 1.2rem;
+}
+
+.product__info-quantity {
+    font-size: 1.2rem;
+}
+
+.btn-order {
+    border: 1px solid white;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    background-color: transparent;
+}
+
+.product__quantity {
+    font-size: 18px;
+    text-align: center;
+    min-width: 30px;
+}
+
+.product__quantity-btn {
+    border: 1px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0.35rem 0.75rem;
+    margin: 0 1rem;
+}
+
+.product__order-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product__quantity-title {
+    font-size: 1.2rem;
+}
+
+.product__order {
+    display: flex;
+    align-items: center;
+}

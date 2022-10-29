@@ -1,0 +1,7 @@
+export const UPDATE = "updatedAt"
+export const CREATE = "createdAt"
+export const LIKE = "likeCount"
+export const COMMENT = "commentCount"
+export const VIEW = "viewCount"
+export const RATING = "rating"
+export const QUANTITY = "quantity"

@@ -1,0 +1,58 @@
+.product__management-container {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1rem;
+    justify-content: space-between;
+}
+
+.product__management-left {
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.product__management-statistic {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.product__management-info {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.product__management-like {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.product__management-view {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.product__management-comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.product__management-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.product__management-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}

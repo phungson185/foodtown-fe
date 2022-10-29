@@ -1,0 +1,45 @@
+.preview-blog-container {
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 0.75rem;
+    cursor: pointer;
+    min-height: 21rem;
+}
+
+.blog-image {
+    max-width: 100%;
+    width: fit-content;
+    height: 14rem;
+    border-radius: 1rem;
+}
+
+.blog-image-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blog-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+.blog-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.blog-react {
+    display: flex;
+    flex-direction: row;
+}
+
+.blog-react > div {
+    margin-right: 1rem;
+}

@@ -1,0 +1,22 @@
+.greet-container {
+    background-image: url("../../../assets/ft-bg-1.png");
+}
+
+.greet-content {
+    top: 40%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.greet-content > p {
+    margin: 0;
+    font-size: 3rem;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.greet-btn {
+    margin-top: 1rem;
+}

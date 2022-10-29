@@ -1,0 +1,30 @@
+.slideshow-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 100%;
+    margin-top: 3rem;
+}
+
+.slideshow-image {
+    max-width: 240px;
+    max-height: 140px;
+}
+
+.slideshow-navigator {
+    cursor: pointer;
+    font-size: 36px;
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.next {
+    margin-left: auto;
+}
+
+.prev {
+    margin-right: auto;
+}

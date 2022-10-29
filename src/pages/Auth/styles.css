@@ -1,0 +1,84 @@
+.auth-container {
+    background-image: url("../../assets/ft-bg-2.png");
+}
+
+.login-form-container {
+    top: 30%;
+    left: 55%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.signup-form-container {
+    top: 25%;
+    left: 55%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.login-form-container * {
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.signup-form-container * {
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.login-form * {
+    padding: 0.5rem;
+    margin: 0.25rem;
+}
+
+.signup-form * {
+    padding: 0.5rem;
+    margin: 0.25rem;
+}
+
+.auth-form-title {
+    font-size: 2.5rem;
+}
+
+.auth-mode {
+    cursor: pointer;
+}
+
+.login-form-container button {
+    cursor: pointer;
+    margin: 0.5rem 0;
+}
+
+.signup-form-container button {
+    cursor: pointer;
+    margin: 0.5rem 0;
+}
+
+.signup-name {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 49.5% 49.5%;
+    gap: 1%;
+}
+
+.signup-name input {
+    margin: 0;
+}

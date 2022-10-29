@@ -1,0 +1,15 @@
+.user__management--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.user__management--content {
+    height: 85vh;
+    width: 100%;
+}
+
+.user__management--info {
+    display: flex;
+}
