@@ -9,12 +9,12 @@ import './styles.css'
 
 const Home = () => {
   return (
-    <div className='home-container'>
+    <div className="home-container">
       <Greet />
-      <About />
-      <Menu />
-      <Blogs />
-      <Contact />
+      {/* <About /> */}
+      {/* <Menu /> */}
+      {/* <Blogs /> */}
+      {/* <Contact /> */}
       <Footer />
     </div>
   )

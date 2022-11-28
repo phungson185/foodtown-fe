@@ -1,53 +1,52 @@
 .footer {
-    height: 30vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--color-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-gray);
 }
 
 .footer * {
-    margin: 1rem 0 0.2rem 0;
+  margin: 1rem 0 0.2rem 0;
 }
 
 .footer-image {
-    height: 4rem;
-    margin: 0.5rem;
+  height: 4rem;
+  margin: 0.5rem;
 }
 
 .footer-contact {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .footer-contact * {
-    margin: 0 1rem;
-    color: var(--color-primary-variant);
+  margin: 0 1rem;
+  color: var(--color-primary-variant);
 }
 
 .footer-nav * {
-    margin: 0 1rem;
-    text-decoration: none;
-    color: var(--color-primary-variant);
+  margin: 0 1rem;
+  text-decoration: none;
+  color: var(--color-primary-variant);
 }
 
 .footer-copyright {
-    background-color: var(--color-primary-variant);
-    margin-top: 1rem;
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    color: var(--color-white);
+  background-color: var(--color-primary-variant);
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-white);
 }
 
-.footer-address { 
-    color: var(--color-primary-variant);
-    font-size: 1.2rem;
-    margin: 0.25rem;
+.footer-address {
+  color: var(--color-primary-variant);
+  font-size: 1.2rem;
+  margin: 0.25rem;
 }
 
 .footer-phone {
-    color: var(--color-primary-variant);
-    margin: 0.25rem;
+  color: var(--color-primary-variant);
+  margin: 0.25rem;
 }
