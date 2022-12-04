@@ -68,7 +68,7 @@ const Navbar = ({ user }) => {
             </div>
           </>
         ) : (
-          <p className="navbar-item" onClick={() => {}}>
+          <p className="navbar-item" onClick={onSignIn}>
             ĐĂNG NHẬP
           </p>
         )}

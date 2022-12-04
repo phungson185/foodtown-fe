@@ -12,7 +12,7 @@ const Home = () => {
     <div className="home-container">
       <Greet />
       {/* <About /> */}
-      {/* <Menu /> */}
+      <Menu />
       {/* <Blogs /> */}
       {/* <Contact /> */}
       <Footer />

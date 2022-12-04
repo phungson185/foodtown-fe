@@ -11,7 +11,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getUser } from './actions/auth'
-import { USER } from './constants/role'
+import { ADMIN, USER } from './constants/role'
 import Login from './pages/Admin/Login/Login'
 import Order from './pages/Order/Order'
 
@@ -25,7 +25,7 @@ function App() {
   }, [dispatch])
 
   const UserRoutes = () => {
-    if (role !== USER) {
+    if (role == ADMIN) {
       return (
         <BrowserRouter>
           <Navbar user={user} />
