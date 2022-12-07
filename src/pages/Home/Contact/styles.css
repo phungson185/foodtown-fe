@@ -1,59 +1,59 @@
 .contact-container {
-    background-image: url("../../../assets/ft-bg-3.png");
-    display: flex;
-    align-items: center;
+  background-image: url('../../../assets/ft-bg-3.png');
+  display: flex;
+  align-items: center;
 }
 
 .contact-title {
-    font-size: 2rem;
-    margin: 0.75rem 0;
+  font-size: 2rem;
+  margin: 0.75rem 0;
 }
 
 .contact-form {
-    width: fit-content;
-    margin-left: 50%;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-primary);
-    padding: 1rem 3rem;
-    border-radius: 1rem;
-    color: white;
+  width: fit-content;
+  margin-left: 50%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary);
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  color: white;
 }
 
 .contact-form > form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-form > form > input {
-    border: 1px solid var(--color-black);
-    border-radius: 1rem;
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
-    width: 30rem;
-    margin: 0.5rem 0;
+  border: 1px solid var(--color-black);
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  width: 30rem;
+  margin: 0.5rem 0;
 }
 
 .contact-form > form > textarea {
-    border: 1px solid var(--color-black);
-    border-radius: 1rem;
-    font-size: 1.2rem;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem 0;
-    font-family: 'Poppins', sans-serif;
+  border: 1px solid var(--color-black);
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 .contact-form > form > button {
-    border-radius: 1rem;
-    font-size: 1.2rem;
-    height: 2rem;
-    margin: 1rem 0;
-    cursor: pointer;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  height: 2rem;
+  margin: 1rem 0;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1120px) {
-    .contact-form {
-        margin: auto;
-        border: 1px solid var(--color-black);
-    }
+  .contact-form {
+    margin: auto;
+    border: 1px solid var(--color-black);
+  }
 }
