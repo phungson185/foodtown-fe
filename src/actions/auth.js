@@ -37,7 +37,6 @@ export const login = (formData, isLoginAsAdmin, navigate) => async (dispatch) =>
 export const getUser = () => async (dispatch) => {
     try {
         const { data } = await api.getUser();
-        console.log(data)
         dispatch({ type: REAUTH, data })
     } catch (error) {
         console.log({error});
