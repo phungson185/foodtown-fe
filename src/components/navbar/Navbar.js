@@ -17,7 +17,11 @@ const Navbar = ({ user }) => {
   }
 
   const onLogout = () => {
-    dispatch(logout())
+    // remove local storage
+    localStorage.removeItem('token')
+    localStorage.removeItem('role')
+
+    // dispatch(logout())
   }
 
   const onViewOrders = () => {

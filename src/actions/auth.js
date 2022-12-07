@@ -5,6 +5,7 @@ import { ADMIN } from "../constants/role";
 export const signup = (formData, navigate) => async (dispatch) => {
     try {
         const { data } = await api.signUp(formData);
+        console.log(data)
         dispatch({
             type: SIGNUP,
             data
@@ -36,6 +37,7 @@ export const login = (formData, isLoginAsAdmin, navigate) => async (dispatch) =>
 export const getUser = () => async (dispatch) => {
     try {
         const { data } = await api.getUser();
+        console.log(data)
         dispatch({ type: REAUTH, data })
     } catch (error) {
         console.log({error});

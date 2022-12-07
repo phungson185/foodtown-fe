@@ -66,7 +66,6 @@ const Blogs = () => {
                     <MenuItem value={UPDATE}>Update</MenuItem>
                     <MenuItem value={CREATE}>Create</MenuItem>
                     <MenuItem value={LIKE}>Likes</MenuItem>
-                    <MenuItem value={VIEW}>Views</MenuItem>
                     <MenuItem value={COMMENT}>Comments</MenuItem>
                   </Select>
                 </FormControl>

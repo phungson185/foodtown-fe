@@ -25,15 +25,15 @@ const Blog = ({blog, updatingBlog, updatingBlogContent}) => {
   return (
     <div className='blog__management-container'>
         <div className='blog__management-left'>
-          <Typography variant="h5">Tên: {blog.name}</Typography>
-          <Typography>Giới thiệu: {blog.description}</Typography>
+          <Typography variant="h5">{blog.name}</Typography>
+          <Typography>{blog.description}</Typography>
           <div className='blog__management-time'>
             <Typography>Tạo lúc: {util.time.beautify(blog.createdAt)}</Typography>
             <Typography>Sửa lúc: {util.time.beautify(blog.updatedAt)}</Typography>
           </div>
         </div>
         <div className='blog__management-right'>
-          <div className='blog__management-statistic'>
+          {/* <div className='blog__management-statistic'>
             <div className='blog__management-like'>
               <ThumbUpIcon color="primary" />
               <Typography >{blog.likeCount}</Typography>
@@ -46,7 +46,7 @@ const Blog = ({blog, updatingBlog, updatingBlogContent}) => {
               <VisibilityIcon color="primary" />
               <Typography >{blog.viewCount}</Typography>
             </div>
-          </div>
+          </div> */}
           <div className='blog__management-buttons'>
             <Button variant="contained" onClick={onUpdatingBlogContent}>Edit</Button>
             <Button variant="contained" onClick={onDeleteBlog} color="error">Delete</Button>
