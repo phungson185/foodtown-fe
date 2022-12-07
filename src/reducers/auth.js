@@ -2,7 +2,8 @@ import { LOGIN, LOGOUT, REAUTH, SIGNUP} from "../constants/actionTypes"
 
 const authReducers = (state = {authData: null, role: null}, action) => {
     switch(action.type){
-        case LOGIN: 
+        case LOGIN:
+            localStorage.setItem('token', action?.data?.result?.token);
             return {...state, authData: action?.data?.result, role: action?.data?.result?.role};
         case REAUTH:
             localStorage.setItem('role', action?.data?.result?.role);
@@ -10,9 +11,7 @@ const authReducers = (state = {authData: null, role: null}, action) => {
         case LOGOUT: 
             return { ...state, authData: null };
         case SIGNUP:
-            console.log(action);
-            // localStorage.setItem('token', action?.data.token);
-            console.log(document.cookie);
+            localStorage.setItem('token', action?.data.result.token);
             return {...state, authData: action?.data};
         default: return state;
     }

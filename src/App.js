@@ -30,14 +30,13 @@ function App() {
         <BrowserRouter>
           <Navbar user={user} />
           <Routes>
-            <Route path="/" exact element={<Home />} />
             <Route path="/admin" exact element={<Admin user={user} />} />
             <Route path="/admin/login" exact element={<Login />} />
             <Route path="/product/:id" exact element={<ProductDetail />} />
             <Route path="/blog/:id" exact element={<BlogDetail user={user} />} />
             <Route path="/product/" exact element={<ProductList />} />
             <Route path="/admin/login" exact element={<Login />} />
-            <Route path="*" exact element={<Navigate replace to="/" />} />
+            <Route path="*" exact element={<Navigate replace to="/admin" />} />
           </Routes>
         </BrowserRouter>
       )
