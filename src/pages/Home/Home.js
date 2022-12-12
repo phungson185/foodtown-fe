@@ -7,12 +7,12 @@ import Contact from './Contact/Contact'
 import Footer from '../../components/footer/Footer'
 import './styles.css'
 
-const Home = () => {
+const Home = ({setCart}) => {
   return (
     <div className="home-container">
       <Greet />
       {/* <About /> */}
-      <Menu />
+      <Menu setCart={setCart} />
       {/* <Blogs /> */}
       {/* <Contact /> */}
       <Footer />

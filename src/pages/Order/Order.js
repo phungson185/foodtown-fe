@@ -19,9 +19,9 @@ const Order = () => {
                 <div className='order__history-label'>
                     <p>Danh sách lịch sử đặt hàng</p>
                 </div>
-                {orders.map(order => {
+                {orders.map((order, index) => {
                     return (
-                        <>
+                        <div key={index}>
                             <div className='order__history-item'>
                                 <div className='order__history-info-column'>
                                     <div className='order__history-info__item'>
@@ -65,7 +65,7 @@ const Order = () => {
                                 </div>
                             </div>
                             <hr/>
-                        </>
+                        </div>
                     )
                 })}
             </div>
