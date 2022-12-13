@@ -1,43 +1,54 @@
-import React, { useEffect, useState } from 'react'
-import Button from '@mui/material/Button'
-import ProductForm from '../../../components/productForm/ProductForm'
-import Product from './Product/Product'
-import Pagination from '@mui/material/Pagination'
-import TextField from '@mui/material/TextField'
-import Box from '@mui/material/Box'
-import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import Select from '@mui/material/Select'
-import { COMMENT, LIKE, VIEW, RATING, QUANTITY } from '../../../constants/filterMode'
-import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../../../actions/product'
-import './styles.css'
+import React, { useEffect, useState } from "react";
+import Button from "@mui/material/Button";
+import ProductForm from "../../../components/productForm/ProductForm";
+import Product from "./Product/Product";
+import Pagination from "@mui/material/Pagination";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import {
+  COMMENT,
+  LIKE,
+  VIEW,
+  RATING,
+  QUANTITY,
+} from "../../../constants/filterMode";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../../actions/product";
+import "./styles.css";
 
 const Products = () => {
-  const [isViewingProductList, setIsViewingProductList] = useState(true)
+  const [isViewingProductList, setIsViewingProductList] = useState(true);
   const [updatingProduct, setUpdatingProduct] = useState({
-    _id: '',
-    name: '',
-    description: '',
-    quantity: '',
-    price: '',
+    _id: "",
+    name: "",
+    description: "",
+    quantity: "",
+    price: "",
     ingredients: [],
     image: null,
-  })
-  const [page, setPage] = useState(1)
-  const [searchingName, setSearchingName] = useState('')
-  const [filterField, setFilterField] = useState(RATING)
-  const products = useSelector((state) => state.product.products)
-  const dispatch = useDispatch()
+  });
+  const [page, setPage] = useState(1);
+  const [searchingName, setSearchingName] = useState("");
+  const [filterField, setFilterField] = useState(RATING);
+  const [totalPage, setTotalPage] = useState(1);
+  const products = useSelector((state) => state.product.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts(page, filterField, searchingName))
-  }, [dispatch, page, filterField, searchingName])
+    dispatch(getProducts(page, filterField, searchingName));
+  }, [dispatch, page, filterField, searchingName]);
 
   const onAddingProduct = () => {
-    setIsViewingProductList(false)
-  }
+    setIsViewingProductList(false);
+  };
+
+  useEffect(() => {
+    setTotalPage(Math.round(products?.length / 4));
+  }, [products]);
 
   return (
     <div className="products__management-container">
@@ -87,7 +98,7 @@ const Products = () => {
           )}
           <div className="products__management-pagination">
             <Pagination
-              count={10}
+              count={totalPage}
               page={page}
               onChange={(event, value) => setPage(value)}
               showFirstButton
@@ -102,7 +113,7 @@ const Products = () => {
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
