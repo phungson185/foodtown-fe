@@ -75,7 +75,7 @@ const ProductSlider = ({ products, setCart }) => {
   }
 
   return (
-    <div style={{ position: "relative", maxWidth: "1000px", margin: "auto" }}>
+    <div style={{ position: "relative", margin: "auto" }}>
       <div onClick={() => switchPage(-1)} className="slideshow-navigator prev">
         ❮
       </div>
