@@ -1,30 +1,29 @@
 .slideshow-container {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    min-width: 100%;
-    margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 100%;
+  margin-top: 3rem;
 }
 
 .slideshow-image {
-    max-width: 240px;
-    max-height: 140px;
+  max-width: 240px;
+  max-height: 140px;
 }
 
 .slideshow-navigator {
-    cursor: pointer;
-    font-size: 36px;
-    color: white;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
+  cursor: pointer;
+  color: white;
+  font-size: 3.2rem;
+  padding: 0.5rem;
+  position: absolute;
+  top: 50%;
 }
 
 .next {
-    margin-left: auto;
+  right: 0;
 }
 
 .prev {
-    margin-right: auto;
+  left: 0;
 }
