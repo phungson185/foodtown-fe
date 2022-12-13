@@ -7,7 +7,7 @@ const Greet = () => {
         <div className='greet-content'>
             <p>No left-over</p>
             <p>No left-behind</p>
-            <button className='btn btn-transparent greet-btn'>Mua ngay</button>
+            <a href='#menu' className='btn btn-transparent greet-btn'>Mua ngay</a>
         </div>
     </div>
   )
