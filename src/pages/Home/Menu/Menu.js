@@ -4,6 +4,7 @@ import ProductSlider from "../../../components/productSlider/ProductSlider";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../actions/product";
 import { createOrder } from "../../../actions/order";
+import { RatingStar } from 'rating-star'
 import "./styles.css";
 
 Modal.setAppElement("#root");
@@ -11,6 +12,7 @@ Modal.setAppElement("#root");
 const Menu = ({ setCart }) => {
   const data = useSelector((state) => state.product.products);
   const dispatch = useDispatch();
+  const [rating, setRating] = useState(0)
 
   useEffect(() => {
     dispatch(getProducts(1, "", ""));
@@ -21,6 +23,15 @@ const Menu = ({ setCart }) => {
       {data.length > 0 && (
         <ProductSlider products={data} setCart={setCart} />
       )}
+      <div className="rating">      
+        <RatingStar
+          clickable
+          noBorder={false}
+          rating={rating}
+          className="rating"
+          size={32}
+        />
+      </div>
     </div>
   );
 };
