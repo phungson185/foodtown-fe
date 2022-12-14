@@ -12,7 +12,11 @@ Modal.setAppElement("#root");
 const Menu = ({ setCart }) => {
   const data = useSelector((state) => state.product.products);
   const dispatch = useDispatch();
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(data?.rating)
+
+  const onRating = (score) => {
+    setRating(score)
+  }
 
   useEffect(() => {
     dispatch(getProducts(1, "", ""));
@@ -25,11 +29,13 @@ const Menu = ({ setCart }) => {
       )}
       <div className="rating">      
         <RatingStar
+          id={data?._id}
           clickable
           noBorder={false}
           rating={rating}
           className="rating"
           size={32}
+          onRatingChange={onRating}
         />
       </div>
     </div>
