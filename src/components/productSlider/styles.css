@@ -2,6 +2,14 @@
   display: flex;
 }
 
+.m-0 {
+  margin: 0 !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
 .menu-wrapper {
   display: flex;
   flex-direction: column;
@@ -23,7 +31,7 @@
 }
 
 .slideshow-navigator.next {
-  margin: auto; 
+  margin: auto;
   margin-left: 0.7rem;
 }
 
@@ -68,8 +76,8 @@
   margin-top: 5px;
   color: rgba(255, 255, 255, 0.7);
   font-size: 1xrem;
-  display:-webkit-box;
-  -webkit-line-clamp:13;
+  display: -webkit-box;
+  -webkit-line-clamp: 13;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
