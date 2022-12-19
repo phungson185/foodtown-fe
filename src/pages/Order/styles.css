@@ -7,10 +7,8 @@
 }
 
 .order__history-card {
-    box-shadow: 2px 2px 2px 2px #e6e6e6;
-    border-radius: 0.2rem;
     margin: 0 8rem;
-    padding: 1rem 2rem;
+    padding: 1rem 3rem;
 }
 
 .order__history-item {

@@ -25,22 +25,30 @@ const Order = () => {
   return (
     <div className="order__history-container">
       <div className="order__history-card">
-        <div className="order__history-label">
+        <div className="order__history-label" style={{marginBottom: '20px'}}>
           <p>Danh sách đơn hàng</p>
         </div>
         {orders.map((order, index) => {
           return (
             <>
-              <TableContainer>
+              <TableContainer style={{border: 'solid 1px #333', marginBottom: '20px'}}>
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell>Ngày tạo</TableCell>
-                      <TableCell>Số điện thoại</TableCell>
-                      <TableCell>Tên món</TableCell>
-                      <TableCell>Đơn giá</TableCell>
-                      <TableCell>Số lượng</TableCell>
-                      <TableCell>Thành tiền</TableCell>
+                      <TableCell style={{ fontWeight: 600 }}>
+                        Ngày tạo
+                      </TableCell>
+                      <TableCell style={{ fontWeight: 600 }}>
+                        Số điện thoại
+                      </TableCell>
+                      <TableCell style={{ fontWeight: 600 }}>Tên món</TableCell>
+                      <TableCell style={{ fontWeight: 600 }}>Đơn giá</TableCell>
+                      <TableCell style={{ fontWeight: 600 }}>
+                        Số lượng
+                      </TableCell>
+                      <TableCell style={{ fontWeight: 600 }}>
+                        Thành tiền
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -70,10 +78,12 @@ const Order = () => {
                       );
                     })}
                   </TableBody>
-                  <caption className="order__history-caption">{`Trạng thái: ${
+                  <caption style={{ padding: "15px" }}>{`Trạng thái: ${
                     order?.status ? "Đã thanh toán" : "Chưa thanh toán"
                   }`}</caption>
-                  <caption className="order__history-caption">{`Tổng: ${order?.amount}`}</caption>
+                  <caption
+                    style={{ padding: "15px" }}
+                  >{`Tổng: ${order?.amount}`}</caption>
                 </Table>
               </TableContainer>
             </>
