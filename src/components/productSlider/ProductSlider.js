@@ -1,28 +1,30 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './styles.css'
 
-const ProductSlider = ({
-  products,
-  setCart
-}) => {
-  const [productIndex, setProductIndex] = useState(Number(localStorage.getItem('product_index') || 0));
+const ProductSlider = ({ products, setCart }) => {
+  const [productIndex, setProductIndex] = useState(
+    Number(localStorage.getItem('product_index') || 0)
+  )
   const product = products[productIndex]
 
-  const [productOrders, setProductOrders] = useState(JSON.parse(localStorage.getItem('product_orders')) || products.map((_, index) => {
-    return {
-      id: index,
-      quantity: 1,
-    }
-  }));
+  const [productOrders, setProductOrders] = useState(
+    JSON.parse(localStorage.getItem('product_orders')) ||
+      products.map((item, index) => {
+        return {
+          id: item._id,
+          quantity: 1,
+        }
+      })
+  )
 
   const switchPage = (step) => {
-    let index;
+    let index
     if (productIndex === 0 && step < 0) {
       index = products?.length - 1
     } else if (productIndex === products?.length - 1 && step > 0) {
-      index =  0
+      index = 0
     } else {
-      index =  productIndex + step
+      index = productIndex + step
     }
     setProductIndex(index)
     localStorage.setItem('product_index', index)
@@ -30,33 +32,33 @@ const ProductSlider = ({
 
   const increaseQuantity = () => {
     setProductOrders((prev) => {
-      const newProductOrders = [...prev];
-      newProductOrders[productIndex].quantity += 1;
-      localStorage.setItem('product_orders', JSON.stringify(newProductOrders));
-      return newProductOrders;
+      const newProductOrders = [...prev]
+      newProductOrders[productIndex].quantity += 1
+      localStorage.setItem('product_orders', JSON.stringify(newProductOrders))
+      return newProductOrders
     })
   }
 
   const decreaseQuantity = () => {
     setProductOrders((prev) => {
-      const newProductOrders = [...prev];
-      if (newProductOrders[productIndex].quantity > 0) newProductOrders[productIndex].quantity -= 1;
-      localStorage.setItem('product_orders', JSON.stringify(newProductOrders));
-      return newProductOrders;
+      const newProductOrders = [...prev]
+      if (newProductOrders[productIndex].quantity > 0) newProductOrders[productIndex].quantity -= 1
+      localStorage.setItem('product_orders', JSON.stringify(newProductOrders))
+      return newProductOrders
     })
   }
 
   function handleAddToCart() {
     if (productOrders[productIndex].quantity === 0) {
-      return;
+      return
     }
     setCart((prev) => {
-      const newCart = [...prev];
-      const productOrder = productOrders[productIndex];
-      const product = products[productIndex];
-      const productInCart = newCart.find((item) => item.id === productOrder.id);
+      const newCart = [...prev]
+      const productOrder = productOrders[productIndex]
+      const product = products[productIndex]
+      const productInCart = newCart.find((item) => item.id === productOrder.id)
       if (productInCart) {
-        productInCart.quantity += productOrder.quantity;
+        productInCart.quantity += productOrder.quantity
       } else {
         newCart.push({
           id: productOrder.id,
@@ -66,8 +68,10 @@ const ProductSlider = ({
           image: product?.image?.data,
         })
       }
-      localStorage.setItem('cart', JSON.stringify(newCart));
-      return newCart;
+      localStorage.setItem('cart', JSON.stringify(newCart))
+      productOrders[productIndex].quantity = 1
+      localStorage.setItem('product_orders', JSON.stringify([...productOrders]))
+      return newCart
     })
   }
 
@@ -97,8 +101,12 @@ const ProductSlider = ({
                 Nguyên liệu: {product?.ingredients?.join(', ')}
               </p>
               <p className="product__info-description">Mô tả: {product?.description}</p>
-              <p className="product__info-price">Giá: <span className='product__info-number'>{product?.price}</span> VND</p>
-              <p className="product__info-quantity">Số lượng: <span className='product__info-number'>{product?.quantity}</span> Suất</p>
+              <p className="product__info-price">
+                Giá: <span className="product__info-number">{product?.price}</span> VND
+              </p>
+              <p className="product__info-quantity">
+                Số lượng: <span className="product__info-number">{product?.quantity}</span> Suất
+              </p>
             </div>
             <div className="product__order-container">
               <div className="product__order">

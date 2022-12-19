@@ -1,5 +1,5 @@
 import './index.css'
-import {useState} from 'react'
+import { useState } from 'react'
 import Navbar from './components/navbar/Navbar'
 import Home from './pages/Home/Home'
 import Auth from './pages/Auth/Auth'
@@ -26,15 +26,15 @@ function App() {
     dispatch(getUser())
   }, [dispatch])
 
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
 
   const UserRoutes = () => {
-    if (role == ADMIN) {
+    if (role === ADMIN) {
       return (
         <BrowserRouter>
           <Navbar user={user} />
           <Routes>
-            <Route path="/admin" exact element={<Admin user={user}/>} />
+            <Route path="/admin" exact element={<Admin user={user} />} />
             <Route path="/admin/login" exact element={<Login />} />
             <Route path="/product/:id" exact element={<ProductDetail />} />
             <Route path="/blog/:id" exact element={<BlogDetail user={user} />} />
@@ -56,7 +56,11 @@ function App() {
             <Route path="/product" exact element={<ProductList />} />
             <Route path="/order" exact element={<Order />} />
             <Route path="/admin/login" exact element={<Login />} />
-            <Route path="/cart" exact element={<Cart cart={cart} />} />
+            <Route
+              path="/cart"
+              exact
+              element={<Cart cart={cart} setCart={setCart} user={user} />}
+            />
             <Route path="*" exact element={<Navigate replace to="/" />} />
           </Routes>
         </BrowserRouter>

@@ -8,7 +8,7 @@ import './styles.css'
 import { useDispatch } from 'react-redux'
 import { ADMIN } from '../../constants/role'
 
-const Navbar = ({ user, cart, setCart}) => {
+const Navbar = ({ user, cart, setCart }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -26,6 +26,15 @@ const Navbar = ({ user, cart, setCart}) => {
 
   const onViewOrders = () => {
     navigate('/order')
+  }
+
+  const handleCancelProduct = (productIndex) => {
+    setCart((prev) => {
+      const newCart = [...prev]
+      newCart.splice(productIndex, 1)
+      localStorage.setItem('cart', JSON.stringify(newCart))
+      return newCart
+    })
   }
 
   function handleCancelOrder() {
@@ -66,22 +75,24 @@ const Navbar = ({ user, cart, setCart}) => {
         ))}
       </div>
       <div className="navbar-right-container">
-        {user ? (
-          <>
-            <div className="dropdown">
-              <div className="navbar-cart-box">
-                <BsFillCartCheckFill className="navbar-cart" size={24} />
-                <span className="navbar-cart-number">{cart.length}</span>
-              </div>
-              <div className="dropdown-content">
-                <div className="dropdown-content-wrapper">
-                  {cart.length > 0 ? cart?.map((order, index) => (
+        <div className="dropdown">
+          <div className="navbar-cart-box">
+            <BsFillCartCheckFill className="navbar-cart" size={24} />
+            <span className="navbar-cart-number">{cart.length}</span>
+          </div>
+          <div className="dropdown-content">
+            <div className="dropdown-content-wrapper">
+              {cart.length > 0 ? (
+                cart?.map((order, index) => (
+                  <>
                     <div className="dropdown-item" key={index}>
                       <img
                         className="dropdown-item-left"
                         src={
                           order?.image !== undefined
-                            ? `data:image/png;base64, ${Buffer.from(order?.image).toString('base64')}`
+                            ? `data:image/png;base64, ${Buffer.from(order?.image).toString(
+                                'base64'
+                              )}`
                             : null
                         }
                         alt=""
@@ -92,20 +103,29 @@ const Navbar = ({ user, cart, setCart}) => {
                         <p className="dropdown-item-quantity">Quantity: {order?.quantity}</p>
                       </div>
                     </div>
-                  )) : <span>Bạn chưa thêm giỏ hàng.</span>}
-                </div>
-                <div className="dropdown-item">
-                  {cart.length > 0 && (
-                    <button className="btn btn-cancel-order" onClick={handleCancelOrder}>
-                      Đặt lại
-                    </button>
-                  )}
-                  <button className="btn btn-view-order" onClick={() => navigate('/cart')}>
-                    Xem giỏ hàng
-                  </button>
-                </div>
-              </div>
+                    <div className="dropdown-item-remove-button">
+                      <button onClick={() => handleCancelProduct(index)}>Remove</button>
+                    </div>
+                  </>
+                ))
+              ) : (
+                <span>Bạn chưa thêm giỏ hàng.</span>
+              )}
             </div>
+            <div className="dropdown-item">
+              {cart.length > 0 && (
+                <button className="btn btn-cancel-order" onClick={handleCancelOrder}>
+                  Đặt lại
+                </button>
+              )}
+              <button className="btn btn-view-order" onClick={() => navigate('/cart')}>
+                Xem giỏ hàng
+              </button>
+            </div>
+          </div>
+        </div>
+        {user ? (
+          <>
             <BsClockHistory className="navbar-order" size={24} onClick={onViewOrders} />
             <div className="dropdown">
               <MdOutlineAccountCircle className="navbar-cart" size={26} />
@@ -121,7 +141,7 @@ const Navbar = ({ user, cart, setCart}) => {
         )}
       </div>
     </div>
-  );
+  )
 }
 
 export default Navbar
