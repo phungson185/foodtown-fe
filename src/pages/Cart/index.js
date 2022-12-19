@@ -43,6 +43,15 @@ const Cart = ({ cart, setCart, user }) => {
     }
   }
 
+  const handleCancelProduct = (productIndex) => {
+    setCart((prev) => {
+      const newCart = [...prev]
+      newCart.splice(productIndex, 1)
+      localStorage.setItem('cart', JSON.stringify(newCart))
+      return newCart
+    })
+  }
+
   return (
     <>
       <div className="cart__history-container">
@@ -74,14 +83,14 @@ const Cart = ({ cart, setCart, user }) => {
                             <p className="cart__history-subtitle">Số lượng</p>
                             <div>
                               <p
-                                className="product__quantity-btn m-0 p-0"
+                                className="product__quantity-btn m-0 p-1"
                                 onClick={() => decreaseQuantity(index)}
                               >
                                 &#8722;
                               </p>
-                              <p className="product__quantity">{order?.quantity}</p>
+                              <p className="cart__history-title">{order?.quantity}</p>
                               <p
-                                className="product__quantity-btn m-0 p-0"
+                                className="product__quantity-btn m-0 p-1"
                                 onClick={() => increaseQuantity(index)}
                               >
                                 &#43;
@@ -94,6 +103,14 @@ const Cart = ({ cart, setCart, user }) => {
                             <p className="cart__history-subtitle">Tổng</p>
                             <p className="cart__history-title">
                               {order?.quantity * order?.price} VND
+                            </p>
+                          </div>
+                        </div>
+                        <div className="cart__history-info-column">
+                          <div className="cart__history-info__item cart__history-info__total">
+                            <p className="cart__history-subtitle"></p>
+                            <p className="cart__history-title">
+                              <button onClick={() => handleCancelProduct(index)}>Remove</button>
                             </p>
                           </div>
                         </div>
