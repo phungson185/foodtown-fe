@@ -79,8 +79,8 @@ const Auth = () => {
       case 1:
         return (
           <div className="signup-form-container">
-            <p className="auth-form-title">Chào mừng tới FoodTown</p>
-            <p>Hãy đăng ký để cùng ăn với chúng tôi</p>
+            <p className="auth-form-title">Welcome to FoodTown</p>
+            <p>Sign up to eat with us</p>
             <div className="signup-form">
               <div className="signup-name">
                 <input
@@ -88,7 +88,7 @@ const Auth = () => {
                   name="firstName"
                   value={signupInfo.firstName}
                   className="signup-firstname"
-                  placeholder="Họ đệm..."
+                  placeholder="Firstname..."
                   onChange={handleTypingSignupInfo}
                   required
                 />
@@ -97,7 +97,7 @@ const Auth = () => {
                   name="lastName"
                   value={signupInfo.lastName}
                   className="signup-lastname"
-                  placeholder="Tên..."
+                  placeholder="Lastname..."
                   onChange={handleTypingSignupInfo}
                   required
                 />
@@ -106,7 +106,7 @@ const Auth = () => {
                 type="text"
                 name="phoneNumber"
                 value={signupInfo.phoneNumber}
-                placeholder="Số điện thoại..."
+                placeholder="Phone number..."
                 onChange={handleTypingSignupInfo}
                 required
               />
@@ -114,7 +114,7 @@ const Auth = () => {
                 type="text"
                 name="email"
                 value={signupInfo.email}
-                placeholder="Email đăng nhập..."
+                placeholder="Email..."
                 onChange={handleTypingSignupInfo}
                 required
               />
@@ -122,7 +122,7 @@ const Auth = () => {
                 type="password"
                 name="password"
                 value={signupInfo.password}
-                placeholder="Mật khẩu..."
+                placeholder="Password..."
                 onChange={handleTypingSignupInfo}
                 required
               />
@@ -130,16 +130,16 @@ const Auth = () => {
                 type="password"
                 name="repeatPassword"
                 value={signupInfo.repeatPassword}
-                placeholder="Nhắc lại mật khẩu..."
+                placeholder="Re-enter password..."
                 onChange={handleTypingSignupInfo}
                 required
               />
             </div>
             <button className="btn-transparent btn" onClick={onSubmitSignup}>
-              Đăng ký
+              Register
             </button>
             <p onClick={onLogin} className="auth-mode">
-              Tôi muốn đăng nhập
+              I want to register
             </p>
           </div>
         )
@@ -147,8 +147,8 @@ const Auth = () => {
       default:
         return (
           <form action="" className="login-form-container">
-            <p className="auth-form-title">Chào mừng tới FoodTown</p>
-            <p>Hãy đăng nhập để cùng ăn với chúng tôi</p>
+            <p className="auth-form-title">Welcome to FoodTown</p>
+            <p>Login to eat with us</p>
             <div className="login-form">
               <input
                 type="text"
@@ -159,18 +159,18 @@ const Auth = () => {
               <input
                 type="password"
                 name="password"
-                placeholder="Mật khẩu..."
+                placeholder="Password..."
                 onChange={handleTypingLoginInfo}
               />
             </div>
             <button className="btn-transparent btn" onClick={onSubmitLogin}>
-              Đăng nhập
+              Login
             </button>
             <p onClick={onSignUp} className="auth-mode">
-              Bạn chưa có tài khoản?
+              Do not have account yet?
             </p>
             <p onClick={onLoginAsAdmin} className="auth-mode">
-              Đăng nhập như quản trị viên
+              Login as administrators
             </p>
           </form>
         )

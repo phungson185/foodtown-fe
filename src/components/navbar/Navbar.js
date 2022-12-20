@@ -35,19 +35,19 @@ const Navbar = ({ user, cart, setCart}) => {
 
   const navItems = [
     {
-      name: 'Chúng tôi',
+      name: 'ABOUT US',
       id: '#about',
     },
     {
-      name: 'Thực đơn',
+      name: 'MENU',
       id: '#menu',
     },
     {
-      name: 'Bài viết',
+      name: 'BLOGS',
       id: '#blogs',
     },
     {
-      name: 'Liên hệ',
+      name: 'CONTACT',
       id: '#contact',
     },
   ]
@@ -92,16 +92,16 @@ const Navbar = ({ user, cart, setCart}) => {
                         <p className="dropdown-item-quantity">Quantity: {order?.quantity}</p>
                       </div>
                     </div>
-                  )) : <span>Bạn chưa thêm giỏ hàng.</span>}
+                  )) : <span>You have not added to your cart yet.</span>}
                 </div>
                 <div className="dropdown-item">
                   {cart.length > 0 && (
                     <button className="btn btn-cancel-order" onClick={handleCancelOrder}>
-                      Đặt lại
+                      Reorder
                     </button>
                   )}
                   <button className="btn btn-view-order" onClick={() => navigate('/cart')}>
-                    Xem giỏ hàng
+                    View Cart
                   </button>
                 </div>
               </div>
@@ -110,13 +110,13 @@ const Navbar = ({ user, cart, setCart}) => {
             <div className="dropdown">
               <MdOutlineAccountCircle className="navbar-cart" size={26} />
               <div className="dropdown-content">
-                <p onClick={onLogout}>ĐĂNG XUẤT</p>
+                <p onClick={onLogout}>LOGOUT</p>
               </div>
             </div>
           </>
         ) : (
           <p className="navbar-item" onClick={onSignIn}>
-            ĐĂNG NHẬP
+            LOGIN
           </p>
         )}
       </div>

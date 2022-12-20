@@ -15,7 +15,7 @@ const Blogs = () => {
 
   return (
     <div className='blogs-container container' id='blogs'>
-      <p className='blogs-title'>Một số bài viết của Food Town chúng mình</p>
+      <p className='blogs-title'>Some posts of Foodtown</p>
       <div className='blog-container'>
           {
             blogs?.map((item, i) => <Blog key={i} data={item}/>)

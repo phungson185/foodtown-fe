@@ -68,11 +68,11 @@ const BlogDetail = ({user}) => {
                 </div>
                 <div className='blog__statistic-container'>
                     <div className='blog__statistic-left'>
-                        <p>{blog?.viewCount} người đã xem</p>
+                        <p>{blog?.viewCount} viewed</p>
                     </div>
                     <div className='blog__statistic-right'>
-                        <p>{blog?.likes?.length} thích</p>
-                        <p>{commentCount} bình luận</p>
+                        <p>{blog?.likes?.length} liked</p>
+                        <p>{commentCount} comment</p>
                     </div>
                 </div>
                 <div className='blog__react-container'>
@@ -81,29 +81,29 @@ const BlogDetail = ({user}) => {
                             isLiked ?
                             <>
                                 <ThumbUpIcon />
-                                <p>Bỏ thích</p>
+                                <p>Unliked</p>
                             </>
                             :
                             <>
                                 <ThumbUpOffAltIcon />
-                                <p>Thích</p>
+                                <p>Liked</p>
                             </>
                         }
                     </div>
                     <div className='blog__react-item'>
                         <ChatBubbleOutlineIcon />
-                        <p>Bình luận</p>
+                        <p>Comment</p>
                     </div>
                     <div className='blog__react-item' onClick={onShareBlog}>
                         <RiShareForwardLine size="1.75rem" />
-                        <p>Chia sẻ</p>
+                        <p>Shared</p>
                     </div>
                 </div>
                 <div>
                     <div className='blog__detail__comment-container'>
                         <TextField
                             id="outlined-textarea"
-                            placeholder="Hãy cho Food Town biết suy nghĩ của bạn..."
+                            placeholder="Let Food Town know what you think..."
                             multiline
                             value={comment}
                             onChange={(e) => setComment(e.target.value)}
@@ -111,7 +111,7 @@ const BlogDetail = ({user}) => {
                             fullWidth
                         />
                         <div>
-                            <Button variant="contained" className='blog__detail__comment-button' onClick={onSubmitComment}>Gửi</Button>
+                            <Button variant="contained" className='blog__detail__comment-button' onClick={onSubmitComment}>Submit</Button>
                         </div>
                     </div>
                     <div className='blog__detail__comment-list'>
@@ -128,12 +128,12 @@ const BlogDetail = ({user}) => {
                                 commentCount === blog?.comments?.length ?
                                 (
                                     commentCount === 0 ?
-                                    <p>Hãy là người đầu tiên bình luận</p>
+                                    <p>Be the first comment</p>
                                     :
-                                    <p className='blog_detail__comment-load' onClick={showLessComments}>Ẩn bớt</p>
+                                    <p className='blog_detail__comment-load' onClick={showLessComments}>Hide</p>
                                 )
                                 :
-                                <p className='blog_detail__comment-load' onClick={loadNextComments}>Đọc thêm bình luận</p>
+                                <p className='blog_detail__comment-load' onClick={loadNextComments}>Read more</p>
                             }
                             <p>{blog?.comments?.length}/{commentCount}</p>
                         </div>
@@ -154,9 +154,9 @@ const BlogDetail = ({user}) => {
                     <br></br>
                     <hr></hr>
                     <div>
-                        <div>Dự án Food Town nằm trong Chương trình Tăng tốc Khởi nghiệp Xã hội Vietnam Social Challenger Sunny: The Change We Make (VSCS 2022) được tổ chức bởi Sunny Việt Nam và Viện Nghiên cứu Đổi mới và Phát triển (IID), tài trợ bởi Quỹ The Happiness Foundation.</div>
+                        <div>The Food Town project is part of the Vietnam Social Challenger Accelerator Program Sunny: The Change We Make (VSCS 2022) organized by Sunny Vietnam and the Institute for Innovation and Development (IID), Sponsored by The Happiness Foundation.</div>
                         <div>----------------------------</div>
-                        <div>Mọi thông tin chi tiết xin liên hệ:</div>
+                        <div>For more information, please contact:</div>
                         <div>Email: foodtown2022@gmail.com</div>
                         <div>Facebook: Food Town</div>
                         <div>Instagram: instagram.com/foodtown.project</div>

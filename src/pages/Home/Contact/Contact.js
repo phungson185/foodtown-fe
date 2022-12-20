@@ -13,12 +13,12 @@ const Contact = () => {
   return (
     <div className='contact-container container' id='contact'>
       <div className='contact-form'>
-        <p className='contact-title'>Liên hệ với Food Town</p>
+        <p className='contact-title'>Contact</p>
         <form ref={form} onSubmit={sendEmail}>
-          <input type="text" name="lastname" placeholder='Họ đệm' required/>
-          <input type="text" name="firstname" placeholder='Tên' required/>
+          <input type="text" name="lastname" placeholder='Lastname' required/>
+          <input type="text" name="firstname" placeholder='Firstname' required/>
           <input type="email" name="email" placeholder='Email' required/>
-          <textarea name="message" cols="30" rows="10" placeholder='Gửi gắm tới Food Town vài điều' required></textarea>
+          <textarea name="message" cols="30" rows="10" placeholder='Some messages to Food Town' required></textarea>
           <button type="submit" value="Send">Gửi</button>
         </form>
       </div>

@@ -28,8 +28,8 @@ const Blog = ({blog, updatingBlog, updatingBlogContent}) => {
           <Typography variant="h5">{blog.name}</Typography>
           <Typography>{blog.description}</Typography>
           <div className='blog__management-time'>
-            <Typography>Tạo lúc: {util.time.beautify(blog.createdAt)}</Typography>
-            <Typography>Sửa lúc: {util.time.beautify(blog.updatedAt)}</Typography>
+            <Typography>Created at: {util.time.beautify(blog.createdAt)}</Typography>
+            <Typography>Modified at: {util.time.beautify(blog.updatedAt)}</Typography>
           </div>
         </div>
         <div className='blog__management-right'>

@@ -27,17 +27,6 @@ const Menu = ({ setCart }) => {
       {data.length > 0 && (
         <ProductSlider products={data} setCart={setCart} />
       )}
-      <div className="rating">      
-        <RatingStar
-          id={data?._id}
-          clickable
-          noBorder={false}
-          rating={rating}
-          className="rating"
-          size={32}
-          onRatingChange={onRating}
-        />
-      </div>
     </div>
   );
 };

@@ -73,7 +73,7 @@ const ProductSlider = ({
 
   return (
     <div className="menu-wrapper">
-      <p className="menu-title">Thực đơn</p>
+      <p className="menu-title">Menu</p>
       <div className="product__slideshow">
         <div onClick={() => switchPage(-1)} className="slideshow-navigator prev">
           ❮
@@ -94,15 +94,15 @@ const ProductSlider = ({
             <div className="product__info-content">
               <p className="product__info-name">{product?.name}</p>
               <p className="product__info-ingredients">
-                Nguyên liệu: {product?.ingredients?.join(', ')}
+                Ingredients: {product?.ingredients?.join(', ')}
               </p>
-              <p className="product__info-description">Mô tả: {product?.description}</p>
-              <p className="product__info-price">Giá: <span className='product__info-number'>{product?.price}</span> VND</p>
-              <p className="product__info-quantity">Số lượng: <span className='product__info-number'>{product?.quantity}</span> Suất</p>
+              <p className="product__info-description">Description: {product?.description}</p>
+              <p className="product__info-price">Cost: <span className='product__info-number'>{product?.price}</span> VND</p>
+              <p className="product__info-quantity">Quantity: <span className='product__info-number'>{product?.quantity}</span> Meal</p>
             </div>
             <div className="product__order-container">
               <div className="product__order">
-                <p className="product__quantity-title">Đặt hàng:</p>
+                <p className="product__quantity-title">Order:</p>
                 <p className="product__quantity-btn" onClick={decreaseQuantity}>
                   &#8722;
                 </p>
@@ -112,7 +112,7 @@ const ProductSlider = ({
                 </p>
               </div>
               <button className="btn btn-order-cart" onClick={handleAddToCart}>
-                Thêm vào giỏ hàng
+                Add to cart
               </button>
             </div>
           </div>

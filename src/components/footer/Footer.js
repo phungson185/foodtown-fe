@@ -7,19 +7,19 @@ import './styles.css'
 const Footer = () => {
   const navItems = [
     {
-      name: 'CHÚNG TÔI',
+      name: 'ABOUT US',
       id: '#about',
     },
     {
-      name: 'THỰC ĐƠN',
+      name: 'MENU',
       id: '#menu',
     },
     {
-      name: 'BÀI VIẾT',
+      name: 'BLOGS',
       id: '#blogs',
     },
     {
-      name: 'LIÊN HỆ',
+      name: 'CONTACT',
       id: '#contact',
     },
   ]
@@ -28,7 +28,7 @@ const Footer = () => {
     <div className="footer">
       <img src={logo} alt="footer-logo" className="footer-image" />
       <p className="footer-address">
-        Địa chỉ: Đại học BKHN, Tạ Quang Bửu, Bách Khoa, Hai Bà Trưng, thành phố Hà Nội
+        Address: Hanoi University of Science and Technology, 1 Dai Co Viet Road, Ha Noi, Viet Nam
       </p>
       <p className="footer-phone">Điện thoại: 038 966 9553 | 035 863 1412</p>
       <div className="footer-contact">

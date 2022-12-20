@@ -25,21 +25,21 @@ const About = () => {
     dispatch(getAllSponsors());
   }, [])
 
-  const content1 = "Một nhóm các bạn trẻ tràn trề nhiệt huyết và năng lượng tập hợp lại với nhau với mong muốn đóng góp một phần công sức của mình để giảm thiểu các tác động tiêu cực của đồ ăn thừa tới môi trường và giải quyết vấn đề thiếu lương thực, thực phẩm trong xã hội hiện nay"
-  const content2 = "Các đơn vị bảo trợ đã đồng hành cùng Food Town";
+  const content1 = "A group of young people full of enthusiasm and energy gathers together with the desire to contribute part of their efforts to reduce the negative impact of leftovers on the environment and solve the problem of lack of wages. food, food in today's society"
+  const content2 = "Sponsors have accompanied Food Town";
 
   return (
     <div className='about-container container wrapper' id="about">
       <div className='about-section-container'>
         <div className='about-top'>
-          <p className='about-title'>Về chúng tôi</p>
+          <p className='about-title'>About us</p>
           <p className='about-content'>{content1}</p>
         </div>
         <ImageSlide images={images} />
       </div>
       <div className='about-section-container'>
         <div className='about-top'>
-          <p className='about-title'>Đơn vị bảo trợ</p>
+          <p className='about-title'>Accompany units</p>
           <p className='about-content'>{content2}</p>
         </div>
         <div className='about-bottom'>

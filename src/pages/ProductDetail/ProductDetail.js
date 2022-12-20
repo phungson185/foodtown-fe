@@ -91,14 +91,14 @@ const ProductDetail = () => {
                 </p>
               </div>
               <div className="btn btn-transparent" onClick={addToCart}>
-                Đặt hàng
+                Order
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="modal" id="modal">
-        <p>Thêm vào giỏ hàng thành công</p>
+        <p>Added to cart successfully</p>
         <button className="btn btn-transparent modal-btn" onClick={hideModal}>
           OK
         </button>
