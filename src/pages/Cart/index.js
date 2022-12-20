@@ -34,7 +34,6 @@ const Cart = ({ cart, setCart, user }) => {
             (total, order) => order.quantity * order.price + total,
             0
          );
-         const productIds = cart.map((item) => item.id);
          const newCart = cart.map(({ image, ...keepInfos }) => keepInfos);
          const res = await createOrder({
             userId: user._id,
@@ -43,7 +42,7 @@ const Cart = ({ cart, setCart, user }) => {
             products: newCart,
          });
 
-         if (res.data.message === "success") {
+         if (res.data.success) {
             localStorage.removeItem("cart");
             setCart([]);
          }
