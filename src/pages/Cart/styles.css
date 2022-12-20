@@ -2,7 +2,6 @@
   margin-top: 75px;
   display: flex;
   justify-content: space-between;
-  width: 90%;
   max-height: calc(100vh - 75px - 20px);
   overflow: hidden;
   padding-bottom: 1.5rem;
@@ -11,7 +10,6 @@
 .cart__history-card {
   box-shadow: 2px 2px 2px 2px #e6e6e6;
   border-radius: 0.2rem;
-  margin: 0 8rem;
   padding: 1rem 2rem;
   overflow-y: scroll;
   flex: 75%;
@@ -95,7 +93,7 @@
 }
 
 .cart__payment {
-  margin-top: 5rem;
+  margin-block: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,13 +103,13 @@
   width: 200px;
   height: 200px;
   margin-bottom: 1rem;
-  visibility: hidden;
+  display: none;
 }
 
 .cart__payment-subtitle {
   font-size: 1.2rem;
   text-align: center;
-  visibility: hidden;
+  display: none;
 }
 
 .cart__order-position {

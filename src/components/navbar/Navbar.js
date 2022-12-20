@@ -78,11 +78,11 @@ const Navbar = ({ user, cart, setCart }) => {
         <div className="dropdown">
           <div className="navbar-cart-box">
             <BsFillCartCheckFill className="navbar-cart" size={24} />
-            <span className="navbar-cart-number">{cart.length}</span>
+            <span className="navbar-cart-number">{cart?.length}</span>
           </div>
           <div className="dropdown-content">
             <div className="dropdown-content-wrapper">
-              {cart.length > 0 ? (
+              {cart?.length > 0 ? (
                 cart?.map((order, index) => (
                   <>
                     <div className="dropdown-item" key={index}>
@@ -113,7 +113,7 @@ const Navbar = ({ user, cart, setCart }) => {
               )}
             </div>
             <div className="dropdown-item">
-              {cart.length > 0 && (
+              {cart?.length > 0 && (
                 <button className="btn btn-cancel-order" onClick={handleCancelOrder}>
                   Đặt lại
                 </button>
