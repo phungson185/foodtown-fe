@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b1bded21.css",
+    "main.js": "/static/js/main.f72890be.js",
+    "static/media/foodtown-ava.png": "/static/media/foodtown-ava.91ea1c9a08b3faefbdb7.png",
+    "static/media/ft-bg-1.png": "/static/media/ft-bg-1.1793f025290b02c49c20.png",
+    "static/media/ft-members-8.png": "/static/media/ft-members-8.aa4bbe22f730ba1fdc2d.png",
+    "static/media/ft-members-1.png": "/static/media/ft-members-1.d5ad41aedf225191c0d4.png",
+    "static/media/ft-members-5.png": "/static/media/ft-members-5.fb8caf68525287f3e768.png",
+    "static/media/ft-members-7.png": "/static/media/ft-members-7.a5aff06e7c7fdc48695e.png",
+    "static/media/ft-members-2.png": "/static/media/ft-members-2.9510d010da87c2c8b0cc.png",
+    "static/media/ft-members-6.png": "/static/media/ft-members-6.6af4f59ec86380fffbeb.png",
+    "static/media/ft-members-3.png": "/static/media/ft-members-3.f0126fc357a870742bfb.png",
+    "static/media/ft-members-4.png": "/static/media/ft-members-4.faf310c8a730b3a92d1d.png",
+    "static/media/ft-bg-3.png": "/static/media/ft-bg-3.3ebe503a4d4579deea6b.png",
+    "static/media/ft-bg-2.png": "/static/media/ft-bg-2.c183dc72435789815ec2.png",
+    "static/media/momo-qr-code.png": "/static/media/momo-qr-code.365bc9a77f579f7a0763.png",
+    "index.html": "/index.html",
+    "main.b1bded21.css.map": "/static/css/main.b1bded21.css.map",
+    "main.f72890be.js.map": "/static/js/main.f72890be.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1bded21.css",
+    "static/js/main.f72890be.js"
+  ]
+}
