@@ -1,0 +1,23 @@
+.profile-container {
+  margin-top: 62px;
+}
+
+.profile-gradient {
+  height: 15rem;
+  width: 100%;
+  background-image: linear-gradient(140deg, rgb(135, 0, 8, 0.15), rgb(135, 0, 8, 0.75));
+}
+
+.profile-content {
+  padding: 0 20rem;
+}
+
+.profile-avatar {
+  transform: translateY(-50%);
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  object-fit: cover;
+  outline: unset;
+  margin-bottom: -30px;
+}

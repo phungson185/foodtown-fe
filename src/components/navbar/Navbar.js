@@ -1,45 +1,45 @@
-import React from 'react'
-import { logout } from '../../actions/auth'
-import { Link, useNavigate } from 'react-router-dom'
-import { BsClockHistory, BsFillCartCheckFill } from 'react-icons/bs'
-import { MdOutlineAccountCircle } from 'react-icons/md'
-import logo from '../../assets/foodtown-ava.png'
-import './styles.css'
-import { useDispatch } from 'react-redux'
-import { ADMIN } from '../../constants/role'
+import React from 'react';
+import { logout } from '../../actions/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { BsClockHistory, BsFillCartCheckFill } from 'react-icons/bs';
+import { MdOutlineAccountCircle } from 'react-icons/md';
+import logo from '../../assets/foodtown-ava.png';
+import './styles.css';
+import { useDispatch } from 'react-redux';
+import { ADMIN } from '../../constants/role';
 
 const Navbar = ({ user, cart, setCart }) => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSignIn = () => {
-    navigate(`${localStorage.getItem('role') === ADMIN ? '/admin/login' : '/auth'}`)
-  }
+    navigate(`${localStorage.getItem('role') === ADMIN ? '/admin/login' : '/auth'}`);
+  };
 
   const onLogout = () => {
     // remove local storage
-    localStorage.removeItem('token')
-    localStorage.removeItem('role')
-    dispatch(logout())
-    navigate('/auth')
-  }
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    dispatch(logout());
+    navigate('/auth');
+  };
 
   const onViewOrders = () => {
-    navigate('/order')
-  }
+    navigate('/order');
+  };
 
   const handleCancelProduct = (productIndex) => {
     setCart((prev) => {
-      const newCart = [...prev]
-      newCart.splice(productIndex, 1)
-      localStorage.setItem('cart', JSON.stringify(newCart))
-      return newCart
-    })
-  }
+      const newCart = [...prev];
+      newCart.splice(productIndex, 1);
+      localStorage.setItem('cart', JSON.stringify(newCart));
+      return newCart;
+    });
+  };
 
   function handleCancelOrder() {
-    setCart([])
-    localStorage.removeItem('cart')
+    setCart([]);
+    localStorage.removeItem('cart');
   }
 
   const navItems = [
@@ -59,7 +59,7 @@ const Navbar = ({ user, cart, setCart }) => {
       name: 'Liên hệ',
       id: '#contact',
     },
-  ]
+  ];
 
   return (
     <div className="navbar-container">
@@ -90,9 +90,7 @@ const Navbar = ({ user, cart, setCart }) => {
                         className="dropdown-item-left"
                         src={
                           order?.image !== undefined
-                            ? `data:image/png;base64, ${Buffer.from(order?.image).toString(
-                                'base64'
-                              )}`
+                            ? `data:image/png;base64, ${Buffer.from(order?.image).toString('base64')}`
                             : null
                         }
                         alt=""
@@ -128,9 +126,14 @@ const Navbar = ({ user, cart, setCart }) => {
           <>
             <BsClockHistory className="navbar-order" size={24} onClick={onViewOrders} />
             <div className="dropdown">
-              <MdOutlineAccountCircle className="navbar-cart" size={26} />
-              <div className="dropdown-content">
-                <p onClick={onLogout}>ĐĂNG XUẤT</p>
+              <img className="navbar-cart" alt="avatar" src={user.avatar || 'https://i.imgur.com/6VBx3io.png'} />
+              <div className="dropdown-content dropdown-menu">
+                <p className="dropdown-content-item" onClick={() => navigate('/profile')}>
+                  Profile
+                </p>
+                <p className="dropdown-content-item" onClick={onLogout}>
+                  ĐĂNG XUẤT
+                </p>
               </div>
             </div>
           </>
@@ -141,7 +144,7 @@ const Navbar = ({ user, cart, setCart }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

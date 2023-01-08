@@ -5,7 +5,7 @@ body {
 }
 
 p {
-  display:inline-block;
+  display: inline-block;
   margin: 0;
 }
 
@@ -62,7 +62,7 @@ html {
 }
 
 .dropbtn {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -82,7 +82,7 @@ html {
   top: calc(100% - 10px);
   min-width: 8rem;
   background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 4px;
 }
@@ -102,7 +102,9 @@ html {
   color: var(--color-white);
 }
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 a {
   transition: var(--transition);
@@ -122,6 +124,6 @@ a {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 * {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

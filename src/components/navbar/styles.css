@@ -51,6 +51,10 @@
   color: var(--color-white);
   padding: 1.2rem;
   cursor: pointer;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .navbar-cart-box {
@@ -120,6 +124,15 @@
 .dropdown-content p:hover {
   background-color: unset;
   color: unset;
+}
+
+.dropdown-content.dropdown-menu {
+  padding: 0.5rem 0;
+}
+
+.dropdown-content p.dropdown-content-item:hover {
+  transition: all 0.3s ease;
+  background-color: var(--color-gray);
 }
 
 .btn-cancel-order {
