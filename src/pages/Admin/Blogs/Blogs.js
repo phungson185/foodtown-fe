@@ -1,37 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getBlogs } from "../../../actions/blog";
-import { MdSearchOff } from "react-icons/md";
-import {
-  COMMENT,
-  CREATE,
-  LIKE,
-  UPDATE,
-  VIEW,
-} from "../../../constants/filterMode";
-import Button from "@mui/material/Button";
-import CreateBlogForm from "../../../components/createBlogForm/CreateBlogForm";
-import Blog from "./Blog/Blog";
-import Pagination from "@mui/material/Pagination";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import Box from "@mui/material/Box";
-import "./styles.css";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBlogs } from '../../../actions/blog';
+import { MdSearchOff } from 'react-icons/md';
+import { COMMENT, CREATE, LIKE, UPDATE, VIEW } from '../../../constants/filterMode';
+import Button from '@mui/material/Button';
+import CreateBlogForm from '../../../components/createBlogForm/CreateBlogForm';
+import Blog from './Blog/Blog';
+import Pagination from '@mui/material/Pagination';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Box from '@mui/material/Box';
+import './styles.css';
 
 const Blogs = () => {
   const [updatingBlogContent, setUpdatingBlogContent] = useState({
-    name: "",
-    description: "",
-    content: "",
+    name: '',
+    description: '',
+    content: '',
     thumbnail: null,
   });
   const [isViewingBlogs, setIsViewingBlogs] = useState(true);
+  const [type, setType] = useState('CREATE');
   const [page, setPage] = useState(1);
-  const [searchingName, setSearchingName] = useState("");
+  const [searchingName, setSearchingName] = useState('');
   const [totalPage, setTotalPage] = useState(1);
   const [filterField, setFilterField] = useState(UPDATE);
   const blogs = useSelector((state) => state.blog.blogs);
@@ -39,6 +34,7 @@ const Blogs = () => {
 
   const onCreateBlog = () => {
     setIsViewingBlogs(false);
+    setType('CREATE');
   };
 
   useEffect(() => {
@@ -100,6 +96,7 @@ const Blogs = () => {
                     blog={blog}
                     updatingBlog={setIsViewingBlogs}
                     updatingBlogContent={setUpdatingBlogContent}
+                    setType={setType}
                   />
                 ))}
               </div>
@@ -120,6 +117,7 @@ const Blogs = () => {
           cancelCreatingBlog={setIsViewingBlogs}
           cleanForm={setUpdatingBlogContent}
           updatingBlogContent={updatingBlogContent}
+          type={type}
         />
       )}
     </div>
