@@ -1,26 +1,26 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
-import MessageIcon from '@mui/icons-material/Message';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import Typography from '@mui/material/Typography';
-import util from '../../../../utils/index';
-import { useDispatch } from 'react-redux';
-import { deleteBlog } from '../../../../actions/blog';
-import './styles.css';
+import React from 'react'
+import Button from '@mui/material/Button'
+import ThumbUpIcon from '@mui/icons-material/ThumbUp'
+import MessageIcon from '@mui/icons-material/Message'
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import Typography from '@mui/material/Typography'
+import util from '../../../../utils/index'
+import { useDispatch } from 'react-redux'
+import { deleteBlog } from '../../../../actions/blog'
+import './styles.css'
 
 const Blog = ({ blog, updatingBlog, updatingBlogContent, setType }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const onUpdatingBlogContent = () => {
-    updatingBlogContent(blog);
-    updatingBlog(false);
-    setType('UPDATE');
-  };
+    updatingBlogContent(blog)
+    updatingBlog(false)
+    setType('UPDATE')
+  }
 
   const onDeleteBlog = () => {
-    dispatch(deleteBlog(blog._id));
-  };
+    dispatch(deleteBlog(blog._id))
+  }
 
   return (
     <div className="blog__management-container">
@@ -57,7 +57,7 @@ const Blog = ({ blog, updatingBlog, updatingBlogContent, setType }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Blog;
+export default Blog

@@ -5,7 +5,6 @@ import { ADMIN } from '../constants/role';
 export const signup = (formData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.signUp(formData);
-    console.log(data);
     dispatch({
       type: SIGNUP,
       data,
@@ -51,8 +50,7 @@ export const updateUser = (profile) => async (dispatch) => {
   user.append('phoneNumber', profile.phoneNumber);
   user.append('avatar', profile.avatar);
   try {
-    const { data } = await api.updateUser(user);
-    console.log(data);
+    await api.updateUser(user);
   } catch (error) {
     console.log({ error });
   }

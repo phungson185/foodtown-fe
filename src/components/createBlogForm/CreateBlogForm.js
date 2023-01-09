@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import { useDispatch } from 'react-redux';
-import './styles.css';
-import { createBlog, updateBlog } from '../../actions/blog';
+import React, { useState } from 'react'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import { useDispatch } from 'react-redux'
+import './styles.css'
+import { createBlog, updateBlog } from '../../actions/blog'
 
 const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, type }) => {
   const [blogInfo, updateBlogInfo] = useState({
     id: updatingBlogContent._id,
     name: updatingBlogContent.name,
     description: updatingBlogContent.description,
-  });
-  const [blogContent, updateBlogContent] = useState(updatingBlogContent.content);
-  const [blogThumbnail, setBlogThumbnail] = useState(updatingBlogContent.thumbnail);
+  })
+  const [blogContent, updateBlogContent] = useState(updatingBlogContent.content)
+  const [blogThumbnail, setBlogThumbnail] = useState(updatingBlogContent.thumbnail)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const onUploadThumbnail = (e) => {
-    setBlogThumbnail(e.target.files[0]);
-  };
+    setBlogThumbnail(e.target.files[0])
+  }
 
   const onModifyBlogContent = (e) => {
     updateBlogInfo((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
-      };
-    });
-  };
+      }
+    })
+  }
 
   const onCancelCreatingBlog = () => {
     cleanForm({
@@ -37,31 +37,31 @@ const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, ty
       description: '',
       content: '',
       thumbnail: null,
-    });
-    cancelCreatingBlog(true);
-  };
+    })
+    cancelCreatingBlog(true)
+  }
 
   const onSubmitCreatingBlog = () => {
-    dispatch(createBlog(blogInfo, blogContent, blogThumbnail));
+    dispatch(createBlog(blogInfo, blogContent, blogThumbnail))
     cleanForm({
       name: '',
       description: '',
       content: '',
       thumbnail: null,
-    });
-    cancelCreatingBlog(true);
-  };
+    })
+    cancelCreatingBlog(true)
+  }
 
   const onSubmitUpdatingBlog = () => {
-    dispatch(updateBlog(blogInfo, blogContent, blogThumbnail));
+    dispatch(updateBlog(blogInfo, blogContent, blogThumbnail))
     cleanForm({
       name: '',
       description: '',
       content: '',
       thumbnail: null,
-    });
-    cancelCreatingBlog(true);
-  };
+    })
+    cancelCreatingBlog(true)
+  }
 
   return (
     <div className="blog__create-form">
@@ -84,11 +84,11 @@ const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, ty
         editor={ClassicEditor}
         data={blogContent ? blogContent : '<p>Write some stuff...</p>'}
         onReady={(editor) => {
-          console.log('Editor is ready to use!', editor);
+          console.log('Editor is ready to use!', editor)
         }}
         onChange={(event, editor) => {
-          const data = editor.getData();
-          updateBlogContent(data);
+          const data = editor.getData()
+          updateBlogContent(data)
         }}
       />
       <div className="blog__create-thumbnail">
@@ -102,12 +102,15 @@ const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, ty
         <Button variant="outlined" onClick={onCancelCreatingBlog}>
           CANCEL
         </Button>
-        <Button variant="contained" onClick={updatingBlogContent.content ? onSubmitUpdatingBlog : onSubmitCreatingBlog}>
+        <Button
+          variant="contained"
+          onClick={updatingBlogContent.content ? onSubmitUpdatingBlog : onSubmitCreatingBlog}
+        >
           {type}
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreateBlogForm;
+export default CreateBlogForm

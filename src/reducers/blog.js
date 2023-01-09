@@ -6,10 +6,8 @@ const blogReducers = (state = {blogs: null, blog: null, commentCount: null}, act
         case GETALLBLOGS: 
             return {...state, blogs: action?.data?.result};
         case GETBLOG:
-            console.log(action?.data?.result?.commentCount);
             return {...state, blog: action?.data?.result?.blog, commentCount: action?.data?.result?.commentCount}
         case LOADCOMMENTS:
-            console.log(state.blog.comments);
             return {...state, blog: {
                 ...state.blog,
                 comments: state.blog.comments.concat(action?.data?.result)
