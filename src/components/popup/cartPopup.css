@@ -1,0 +1,13 @@
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mx-2 {
+  margin: 0 1rem !important;
+}
+
+.w-full {
+  width: 100% !important;
+}

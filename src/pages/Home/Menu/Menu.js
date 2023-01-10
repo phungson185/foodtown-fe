@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Modal from "react-modal";
 import ProductSlider from "../../../components/productSlider/ProductSlider";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../actions/product";
-import { createOrder } from "../../../actions/order";
 import "./styles.css";
 
 Modal.setAppElement("#root");
