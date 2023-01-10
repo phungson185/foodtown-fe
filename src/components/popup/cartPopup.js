@@ -1,41 +1,67 @@
-import { Button, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import './cartPopup.css'
+import {
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import "./cartPopup.css";
 
 const CartPopup = ({ onSuccess, onClose }) => {
-  const [isNew, setIsNew] = useState(false)
-  const user = useSelector((state) => state.auth.authData)
+  const [isNew, setIsNew] = useState(false);
+  const user = useSelector((state) => state.auth.authData);
 
-  const [newInfo, setNewInfo] = useState({ phoneNumber: user.phoneNumber })
+  const [newInfo, setNewInfo] = useState({
+    phoneNumber: user.phoneNumber,
+    address: user.address,
+  });
   return (
     <>
-      <DialogTitle>CONFIRMATION</DialogTitle>
+      <DialogTitle fontWeight={600}>Xác nhận thông tin khách hàng</DialogTitle>
 
       <DialogContent>
         <div className="flex-center w-full">
-          <div>Bạn muốn sử dụng số điện thoại hiện tại hay</div>
+          <div>Bạn muốn sử dụng số điện thoại và địa chỉ hiện tại hay</div>
           <Button
             className="mx-2"
             variant="outlined"
             color="inherit"
             onClick={() => setIsNew(true)}
           >
-            mới
-          </Button>{' '}
+            thông tin khác
+          </Button>{" "}
           ?
         </div>
         {isNew && (
-          <div>
-            <TextField
-              type="text"
-              defaultValue={user.phoneNumber}
-              name="phoneNumber"
-              placeholder="Phone Number"
-              onChange={(e) => setNewInfo({ ...newInfo, phoneNumber: e.target.value })}
-              required
-            />
-          </div>
+          <>
+            <div>
+              <TextField
+                type="text"
+                defaultValue={user.phoneNumber}
+                name="phoneNumber"
+                placeholder="Số điện thoại"
+                onChange={(e) =>
+                  setNewInfo({ ...newInfo, phoneNumber: e.target.value })
+                }
+                required
+                sx={{ marginBottom: "10px" }}
+              />
+            </div>
+            <div>
+              <TextField
+                type="text"
+                defaultValue={user.address}
+                name="address"
+                placeholder="Địa chỉ"
+                onChange={(e) =>
+                  setNewInfo({ ...newInfo, address: e.target.value })
+                }
+                required
+              />
+            </div>
+          </>
         )}
       </DialogContent>
 
@@ -48,7 +74,7 @@ const CartPopup = ({ onSuccess, onClose }) => {
         </Button>
       </DialogActions>
     </>
-  )
-}
+  );
+};
 
-export default CartPopup
+export default CartPopup;

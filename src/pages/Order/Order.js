@@ -25,28 +25,30 @@ const Order = () => {
   return (
     <div className="order__history-container">
       <div className="order__history-card">
-        <div className="order__history-label" style={{marginBottom: '20px'}}>
+        <div className="order__history-label" style={{ marginBottom: "20px", fontWeight: 700, fontSize: '28px' }}>
           <p>Danh sách đơn hàng</p>
         </div>
         {orders.map((order, index) => {
           return (
             <>
-              <TableContainer style={{border: 'solid 1px #333', marginBottom: '20px'}}>
+              <TableContainer
+                style={{ border: "solid 1px #333", marginBottom: "20px" }}
+              >
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell style={{ fontWeight: 600 }}>
+                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>
                         Ngày tạo
                       </TableCell>
-                      <TableCell style={{ fontWeight: 600 }}>
+                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>
                         Số điện thoại
                       </TableCell>
-                      <TableCell style={{ fontWeight: 600 }}>Tên món</TableCell>
-                      <TableCell style={{ fontWeight: 600 }}>Đơn giá</TableCell>
-                      <TableCell style={{ fontWeight: 600 }}>
+                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>Tên món</TableCell>
+                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>Đơn giá</TableCell>
+                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>
                         Số lượng
                       </TableCell>
-                      <TableCell style={{ fontWeight: 600 }}>
+                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>
                         Thành tiền
                       </TableCell>
                     </TableRow>
@@ -56,7 +58,7 @@ const Order = () => {
                       return (
                         <TableRow>
                           {index === 0 ? (
-                            <TableCell>
+                            <TableCell style={{fontSize: "16px"}}>
                               {order?.createdAt?.substring(
                                 0,
                                 order?.createdAt?.indexOf("T")
@@ -66,24 +68,48 @@ const Order = () => {
                             <TableCell></TableCell>
                           )}
                           {index === 0 ? (
-                            <TableCell>{order?.phoneNumber}</TableCell>
+                            <TableCell style={{fontSize: "16px"}}>{order?.phoneNumber}</TableCell>
                           ) : (
                             <TableCell></TableCell>
                           )}
-                          <TableCell>{item?.name}</TableCell>
-                          <TableCell>{item?.price}</TableCell>
-                          <TableCell>{item?.quantity}</TableCell>
-                          <TableCell>{item?.price * item?.quantity}</TableCell>
+                          <TableCell style={{fontSize: "16px"}}>{item?.name}</TableCell>
+                          <TableCell style={{fontSize: "16px"}}>{item?.price}</TableCell>
+                          <TableCell style={{fontSize: "16px"}}>{item?.quantity}</TableCell>
+                          <TableCell style={{fontSize: "16px"}}>{item?.price * item?.quantity}</TableCell>
                         </TableRow>
                       );
                     })}
                   </TableBody>
-                  <caption style={{ padding: "15px" }}>{`Trạng thái: ${
-                    order?.status ? "Đã thanh toán" : "Chưa thanh toán"
-                  }`}</caption>
-                  <caption
-                    style={{ padding: "15px" }}
-                  >{`Tổng: ${order?.amount}`}</caption>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "10px",
+                      margin: "10px",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div>
+                      <span>Số điện thoại: </span>
+                      <p>{order?.phoneNumber}</p>
+                    </div>
+                    <div>
+                      <span>Địa chỉ: </span>
+                      <p>{order?.address}</p>
+                    </div>
+                    <div>
+                      <span>Trạng thái: </span>
+                      <p
+                        style={{
+                          color: order?.status ? "green" : "red",
+                        }}
+                      >
+                        {order?.status ? "Đã thanh toán" : "Chưa thanh toán"}
+                      </p>
+                    </div>
+                    <p
+                      style={{ fontWeight: 600 }}
+                    >{`Tổng: ${order?.amount}vnd`}</p>
+                  </div>
                 </Table>
               </TableContainer>
             </>

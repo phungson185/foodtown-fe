@@ -129,10 +129,10 @@ const Navbar = ({ user, cart, setCart }) => {
               <img className="navbar-cart" alt="avatar" src={user.avatar || 'https://i.imgur.com/6VBx3io.png'} />
               <div className="dropdown-content dropdown-menu">
                 <p className="dropdown-content-item" onClick={() => navigate('/profile')}>
-                  Profile
+                  Thông tin cá nhân
                 </p>
                 <p className="dropdown-content-item" onClick={onLogout}>
-                  ĐĂNG XUẤT
+                  Đăng xuất
                 </p>
               </div>
             </div>

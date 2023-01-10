@@ -67,9 +67,9 @@ const BlogDetail = ({user}) => {
                     <img className='blog__detail-thumbnail' src={image} alt="" />
                 </div>
                 <div className='blog__statistic-container'>
-                    <div className='blog__statistic-left'>
+                    {/* <div className='blog__statistic-left'>
                         <p>{blog?.viewCount} người đã xem</p>
-                    </div>
+                    </div> */}
                     <div className='blog__statistic-right'>
                         <p>{blog?.likes?.length} thích</p>
                         <p>{commentCount} bình luận</p>
@@ -94,10 +94,10 @@ const BlogDetail = ({user}) => {
                         <ChatBubbleOutlineIcon />
                         <p>Bình luận</p>
                     </div>
-                    <div className='blog__react-item' onClick={onShareBlog}>
+                    {/* <div className='blog__react-item' onClick={onShareBlog}>
                         <RiShareForwardLine size="1.75rem" />
                         <p>Chia sẻ</p>
-                    </div>
+                    </div> */}
                 </div>
                 <div>
                     <div className='blog__detail__comment-container'>
@@ -123,7 +123,7 @@ const BlogDetail = ({user}) => {
                             :
                             <></>
                         }
-                        <div className='blog_detail__comment-statistic'>
+                        {/* <div className='blog_detail__comment-statistic'>
                             {
                                 commentCount === blog?.comments?.length ?
                                 (
@@ -136,7 +136,7 @@ const BlogDetail = ({user}) => {
                                 <p className='blog_detail__comment-load' onClick={loadNextComments}>Đọc thêm bình luận</p>
                             }
                             <p>{blog?.comments?.length}/{commentCount}</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -148,20 +148,10 @@ const BlogDetail = ({user}) => {
                     <br></br>
                 </div>
                 <div className='blog__detail__content-container'>
-                    <div>
+                    <div className='blog__detail__content'>
                         {blog?.content ? htmlParser(blog?.content) : null}
                     </div>
                     <br></br>
-                    <hr></hr>
-                    <div>
-                        <div>Dự án Food Town nằm trong Chương trình Tăng tốc Khởi nghiệp Xã hội Vietnam Social Challenger Sunny: The Change We Make (VSCS 2022) được tổ chức bởi Sunny Việt Nam và Viện Nghiên cứu Đổi mới và Phát triển (IID), tài trợ bởi Quỹ The Happiness Foundation.</div>
-                        <div>----------------------------</div>
-                        <div>Mọi thông tin chi tiết xin liên hệ:</div>
-                        <div>Email: foodtown2022@gmail.com</div>
-                        <div>Facebook: Food Town</div>
-                        <div>Instagram: instagram.com/foodtown.project</div>
-                        <div>Phone number: (+84) 389 669 553</div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@ html {
 }
 
 .container {
-  height: 100vh;
+  max-height: 100vh;
   transition: var(--transition);
 }
 
