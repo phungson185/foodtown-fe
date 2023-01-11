@@ -58,7 +58,7 @@ const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, ty
       name: '',
       description: '',
       content: '',
-      thumbnail: null,
+      thumbnail: '',
     })
     cancelCreatingBlog(true)
   }
@@ -84,7 +84,6 @@ const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, ty
         editor={ClassicEditor}
         data={blogContent ? blogContent : '<p>Write some stuff...</p>'}
         onReady={(editor) => {
-          console.log('Editor is ready to use!', editor)
         }}
         onChange={(event, editor) => {
           const data = editor.getData()

@@ -63,12 +63,12 @@
 }
 
 .blog__detail__name-content {
-    font-size: 2.75rem;
+    font-size: 30px;
     font-weight: 700;
 }
 
 .blog__detail__content {
-    font-size: 1.75rem;
+    font-size: 16px;
     font-weight: 400;
     padding: 0.5rem 0;
 }

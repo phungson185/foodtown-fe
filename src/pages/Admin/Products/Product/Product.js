@@ -26,7 +26,7 @@ const Product = ({product, updateProduct, setUpdatingProduct}) => {
                 </div>
             </div>
             <div className='product__management-right'>
-                <div className='product__management-statistic'>
+                {/* <div className='product__management-statistic'>
                     <div className='product__management-like'>
                         <ThumbUpIcon color="primary" />
                         <Typography >{product.likeCount}</Typography>
@@ -39,7 +39,7 @@ const Product = ({product, updateProduct, setUpdatingProduct}) => {
                         <VisibilityIcon color="primary" />
                         <Typography >{product.viewCount}</Typography>
                     </div>
-                </div>
+                </div> */}
                 <div className='product__management-buttons'>
                     <Button variant="contained" onClick={onUpdateProduct}>Edit</Button>
                     <Button variant="contained" onClick={null} color="error">Delete</Button>
