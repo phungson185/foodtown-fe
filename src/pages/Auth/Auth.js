@@ -43,7 +43,7 @@ const Auth = () => {
     firstName: Yup.string().required("Vui lòng nhập tên"),
     lastName: Yup.string().required("Vui lòng nhập họ"),
     phoneNumber: Yup.string().required("Vui lòng nhập số điện thoại"),
-    email: Yup.string().email('please enter valid email').required("Vui lòng nhập email"),
+    email: Yup.string().email('Vui lòng nhập một email hợp lệ').required("Vui lòng nhập email"),
     password: Yup.string().required("Vui lòng nhập mật khẩu"),
     repeatPassword: Yup.string()
       .trim()
@@ -65,7 +65,7 @@ const Auth = () => {
     password: '',
   }
   const loginValidationSchema = Yup.object().shape({
-    email: Yup.string().email('please enter valid email').required("Vui lòng nhập email"),
+    email: Yup.string().email('Vui lòng nhập một email hợp lệ').required("Vui lòng nhập email"),
     password: Yup.string().required("Vui lòng nhập mật khẩu")
   })
 
@@ -143,7 +143,7 @@ const Auth = () => {
         return (
           <div action="" className="login-form-container">
             <p className="auth-form-title">Chào mừng tới FoodTown</p>
-            <p>Hãy đăng nhập để cùng ăn với chúng tôi</p>
+            <p>Hãy đăng nhập để tận hưởng cùng chúng tôi</p>
             <Formik initialValues={loginInitialValues} onSubmit={onSubmitLogin} validationSchema={loginValidationSchema}>
               {({ errors, touched }) => (
                 <Form className="login-form">
