@@ -40,15 +40,15 @@ const Auth = () => {
     repeatPassword: '',
   }
   const signupValidationSchema = Yup.object().shape({
-    firstName: Yup.string().required("Required"),
-    lastName: Yup.string().required("Required"),
-    phoneNumber: Yup.string().required("Required"),
-    email: Yup.string().email('please enter valid email').required("Required"),
-    password: Yup.string().required("Required"),
+    firstName: Yup.string().required("Vui lòng nhập tên"),
+    lastName: Yup.string().required("Vui lòng nhập họ"),
+    phoneNumber: Yup.string().required("Vui lòng nhập số điện thoại"),
+    email: Yup.string().email('please enter valid email').required("Vui lòng nhập email"),
+    password: Yup.string().required("Vui lòng nhập mật khẩu"),
     repeatPassword: Yup.string()
       .trim()
-      .required("Required")
-      .oneOf([Yup.ref('password')], "Không trùng"),
+      .required("Vui lòng nhập lại mật khẩu")
+      .oneOf([Yup.ref('password')], "Mật khẩu không khớp"),
   })
   const onSubmitSignup = (values) => {
     try {
@@ -65,8 +65,8 @@ const Auth = () => {
     password: '',
   }
   const loginValidationSchema = Yup.object().shape({
-    email: Yup.string().email('please enter valid email').required("Required"),
-    password: Yup.string().required("Required")
+    email: Yup.string().email('please enter valid email').required("Vui lòng nhập email"),
+    password: Yup.string().required("Vui lòng nhập mật khẩu")
   })
 
   const onSubmitLogin = (values, props) => {
@@ -87,22 +87,22 @@ const Auth = () => {
             <Formik initialValues={signupInitialValues} onSubmit={onSubmitSignup} validationSchema={signupValidationSchema}>
               {({ errors, touched }) => (
                 <Form className="signup-form">
-                  <div className="signup-name">
+                  {/* <div className="signup-name"> */}
                     <Field
                       type="text"
                       name="firstName"
                       className="signup-firstname"
-                      placeholder="Họ đệm..."
+                      placeholder="Tên ..."
                     />
                     {errors.firstName && touched.firstName ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.firstName}</span> : null}
                     <Field
                       type="text"
                       name="lastName"
                       className="signup-lastname"
-                      placeholder="Tên..."
+                      placeholder="Họ ..."
                     />
                     {errors.lastName && touched.lastName ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.lastName}</span> : null}
-                  </div>
+                  {/* </div> */}
                   <Field
                     type="text"
                     name="phoneNumber"
