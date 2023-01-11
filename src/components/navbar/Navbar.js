@@ -85,13 +85,15 @@ const Navbar = ({ user, cart, setCart }) => {
               {cart?.length > 0 ? (
                 cart?.map((order, index) => (
                   <>
+                    {console.log(order)}
                     <div className="dropdown-item" key={index}>
                       <img
                         className="dropdown-item-left"
                         src={
-                          order?.image !== undefined
-                            ? `data:image/png;base64, ${Buffer.from(order?.image).toString('base64')}`
-                            : null
+                          // order?.image !== undefined
+                          //   ? `data:image/png;base64, ${Buffer.from(order?.image).toString('base64')}`
+                          //   : null
+                          order?.image
                         }
                         alt=""
                       />

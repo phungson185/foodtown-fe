@@ -2,7 +2,7 @@ import React from "react";
 import QRCODE_IMAGE from "../../assets/momo-qr-code.png";
 import { createOrder } from "../../api";
 import "./styles.css";
-import { Dialog } from "@mui/material";
+import { Avatar, Dialog } from "@mui/material";
 import { CartPopup } from "../../components/popup";
 import { toast, ToastContainer } from "react-toastify";
 

@@ -43,14 +43,7 @@ export const createProduct = (productInfo, productImage) => async (dispatch) => 
 
 export const updateProduct = (productInfo, productImage) => async (dispatch) => {
     try {
-        const product = new FormData();
-        product.append('name', productInfo.name);
-        product.append('description', productInfo.description);
-        product.append('ingredients', productInfo.ingredients);
-        product.append('price', productInfo.price);
-        product.append('quantity', productInfo.quantity);
-        product.append('image', productImage);
-        const {data} = await api.updateProduct(product);
+        const {data} = await api.updateProduct({...productInfo, image: productImage});
         console.log({data});
     } catch (error) {
         console.log(error);

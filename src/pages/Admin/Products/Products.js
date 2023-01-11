@@ -75,7 +75,7 @@ const Products = () => {
                     size="small"
                     fullWidth
                   >
-                    <MenuItem value={RATING}>Rating</MenuItem>
+                    {/* <MenuItem value={RATING}>Rating</MenuItem> */}
                     <MenuItem value={QUANTITY}>Quantity</MenuItem>
                   </Select>
                 </FormControl>

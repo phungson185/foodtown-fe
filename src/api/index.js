@@ -33,12 +33,14 @@ export const createProduct = (product) =>
       'Content-Type': 'multipart/form-data',
     },
   });
-export const updateProduct = (product) =>
-  API.patch(`/products`, product, {
+export const updateProduct = (product) => {
+  API.patch(`/products/${product.id}`, product, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
+}
+  
 
 export const getBlogs = (page, filterField, searchingName) =>
   API.get(`blogs?page=${page}&limit=${6}&filter=${filterField}&name=${searchingName}`);

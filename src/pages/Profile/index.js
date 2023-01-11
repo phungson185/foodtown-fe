@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import TextField from '@mui/material/TextField'
-import Grid from '@mui/material/Grid'
-import './styles.css'
-import Paper from '@mui/material/Paper'
-import Button from '@mui/material/Button'
-import { useDispatch, useSelector } from 'react-redux'
-import { updateUser } from '../../actions/auth'
-import { isEmpty } from 'lodash'
+import React, { useState, useEffect } from "react";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import "./styles.css";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../actions/auth";
+import { isEmpty } from "lodash";
+import { Avatar } from "@mui/material";
 
 const Profile = () => {
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.auth.authData)
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.authData);
 
   const [profile, setProfile] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
     address: null,
     avatar: null,
-  })
+  });
 
   useEffect(() => {
     if (user) {
@@ -28,37 +29,37 @@ const Profile = () => {
         phoneNumber: user.phoneNumber,
         address: user.address || null,
         avatar: user.avatar,
-      })
+      });
     }
-  }, [user])
+  }, [user]);
 
   const handleOnChangeProfile = (e) => {
     setProfile((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
-      }
-    })
-  }
+      };
+    });
+  };
 
   const handleUpdateProfile = () => {
-    dispatch(updateUser(profile))
-  }
+    dispatch(updateUser(profile));
+  };
 
   const onUploadTAvatar = (e) => {
     setProfile((prev) => {
       return {
         ...prev,
         avatar: e.target.files[0],
-      }
-    })
-  }
+      };
+    });
+  };
 
   return (
     <div className="profile-container">
       <div className="profile-gradient"></div>
       <div className="profile-content">
-        <img
+        {/* <img
           className="profile-avatar"
           alt="avatar"
           src={
@@ -66,7 +67,10 @@ const Profile = () => {
               ? URL.createObjectURL(profile.avatar)
               : 'https://i.imgur.com/6VBx3io.png'
           }
-        />
+        /> */}
+        <Avatar
+          sx={{ width: 240, height: 240, margin: "-50px 0 50px 0" }}
+        ></Avatar>
         <div className="form-wrapper">
           <Grid container rowSpacing={3} columnSpacing={2}>
             {/* <Grid item xs={9}>
@@ -82,9 +86,8 @@ const Profile = () => {
                   onChange={handleOnChangeProfile}
                   required
                   fullWidth
-                  label="First name"
+                  label="Tên"
                   value={profile.firstName}
-                  disabled
                 />
               </Paper>
             </Grid>
@@ -95,9 +98,8 @@ const Profile = () => {
                   onChange={handleOnChangeProfile}
                   required
                   fullWidth
-                  label="Last name"
+                  label="Họ"
                   value={profile.lastName}
-                  disabled
                 />
               </Paper>
             </Grid>
@@ -105,13 +107,12 @@ const Profile = () => {
               <Paper>
                 <TextField
                   name="phoneNumber"
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                  inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                   required
                   fullWidth
-                  label="Phone number"
+                  label="Số điện thoại"
                   value={profile.phoneNumber}
                   onChange={handleOnChangeProfile}
-                  disabled
                 />
               </Paper>
             </Grid>
@@ -120,15 +121,14 @@ const Profile = () => {
                 <TextField
                   name="address"
                   fullWidth
-                  label="Address"
+                  label="Địa chỉ"
                   value={profile.address}
                   onChange={handleOnChangeProfile}
-                  disabled
                 />
               </Paper>
             </Grid>
             <Grid item xs={8}>
-              <Paper styles={{ boxShadow: 'unset' }}></Paper>
+              <Paper styles={{ boxShadow: "unset" }}></Paper>
             </Grid>
           </Grid>
           {/* <Button size="large" variant="contained" onClick={handleUpdateProfile}>
@@ -137,7 +137,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

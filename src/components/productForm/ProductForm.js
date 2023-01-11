@@ -5,10 +5,12 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useDispatch } from 'react-redux';
 import './styles.css'
 import { createProduct, updateProduct } from '../../actions/product';
+import { getProducts } from '../../api';
 
 const ProductForm = ({updatingProduct, cancellingAddingProduct}) => {
     const [productImage, setProductImage] = useState(updatingProduct.image);
     const [productForm, setProductForm] = useState({
+        id: updatingProduct._id,
         name: updatingProduct.name,
         ingredients: updatingProduct.ingredients,
         price: updatingProduct.price,
