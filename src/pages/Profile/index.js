@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import "./styles.css";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../../actions/auth";
-import { isEmpty } from "lodash";
-import { Avatar } from "@mui/material";
+import React, { useState, useEffect } from 'react'
+import TextField from '@mui/material/TextField'
+import Grid from '@mui/material/Grid'
+import './styles.css'
+import Paper from '@mui/material/Paper'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateUser } from '../../actions/auth'
+import { Avatar, Button } from '@mui/material'
 
 const Profile = () => {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.authData);
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.auth.authData)
 
   const [profile, setProfile] = useState({
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    address: null,
-    avatar: null,
-  });
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    address: '',
+    avatar: '',
+  })
 
   useEffect(() => {
     if (user) {
@@ -27,58 +25,50 @@ const Profile = () => {
         firstName: user.firstName,
         lastName: user.lastName,
         phoneNumber: user.phoneNumber,
-        address: user.address || null,
+        address: user.address,
         avatar: user.avatar,
-      });
+      })
     }
-  }, [user]);
+  }, [user])
 
   const handleOnChangeProfile = (e) => {
     setProfile((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
-      };
-    });
-  };
+      }
+    })
+  }
 
   const handleUpdateProfile = () => {
-    dispatch(updateUser(profile));
-  };
+    dispatch(updateUser(profile))
+  }
 
   const onUploadTAvatar = (e) => {
     setProfile((prev) => {
       return {
         ...prev,
         avatar: e.target.files[0],
-      };
-    });
-  };
+      }
+    })
+  }
 
   return (
     <div className="profile-container">
       <div className="profile-gradient"></div>
       <div className="profile-content">
-        {/* <img
-          className="profile-avatar"
-          alt="avatar"
-          src={
-            !isEmpty(profile.avatar)
-              ? URL.createObjectURL(profile.avatar)
-              : 'https://i.imgur.com/6VBx3io.png'
-          }
-        /> */}
         <Avatar
-          sx={{ width: 240, height: 240, margin: "-50px 0 50px 0" }}
+          sx={{ width: 240, height: 240, margin: '-50px 0 50px 0' }}
+          src={user?.avatar}
         ></Avatar>
         <div className="form-wrapper">
           <Grid container rowSpacing={3} columnSpacing={2}>
-            {/* <Grid item xs={9}>
+            <Grid item xs={9}>
               <Button variant="contained" component="label">
                 Upload avatar
                 <input type="file" hidden onChange={onUploadTAvatar} />
               </Button>
-            </Grid> */}
+            </Grid>
             <Grid item xs={4.5}>
               <Paper>
                 <TextField
@@ -107,7 +97,7 @@ const Profile = () => {
               <Paper>
                 <TextField
                   name="phoneNumber"
-                  inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                   required
                   fullWidth
                   label="Số điện thoại"
@@ -128,16 +118,16 @@ const Profile = () => {
               </Paper>
             </Grid>
             <Grid item xs={8}>
-              <Paper styles={{ boxShadow: "unset" }}></Paper>
+              <Paper styles={{ boxShadow: 'unset' }}></Paper>
             </Grid>
           </Grid>
-          {/* <Button size="large" variant="contained" onClick={handleUpdateProfile}>
+          <Button size="large" variant="contained" onClick={handleUpdateProfile}>
             Update
-          </Button> */}
+          </Button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

@@ -83,8 +83,7 @@ const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, ty
         name="content"
         editor={ClassicEditor}
         data={blogContent ? blogContent : '<p>Write some stuff...</p>'}
-        onReady={(editor) => {
-        }}
+        onReady={(editor) => {}}
         onChange={(event, editor) => {
           const data = editor.getData()
           updateBlogContent(data)
@@ -97,6 +96,7 @@ const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, ty
         </Button>
         <p>{blogThumbnail ? blogThumbnail.name : 'No uploaded image'}</p>
       </div>
+      <img src={updatingBlogContent.thumbnail} alt="" className='fixed-image' />
       <div className="blog__create-buttons">
         <Button variant="outlined" onClick={onCancelCreatingBlog}>
           CANCEL

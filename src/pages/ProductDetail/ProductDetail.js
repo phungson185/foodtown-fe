@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getFoodById } from '../../actions/product'
 import { RatingStar } from 'rating-star'
 import './styles.css'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 const ProductDetail = () => {
   const productData = useSelector((state) => state.product.products[0])

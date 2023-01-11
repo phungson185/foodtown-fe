@@ -1,28 +1,33 @@
 .blog__create-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .blog__create-thumbnail {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .blog__create-thumbnail > p {
-    max-width: 15rem;
-    overflow: hidden;
-    white-space: nowrap; /* Don't forget this one */
-    text-overflow: ellipsis;;
+  max-width: 15rem;
+  overflow: hidden;
+  white-space: nowrap; /* Don't forget this one */
+  text-overflow: ellipsis;
 }
 
 .blog__create-buttons {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: flex-end;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
 }
 
 .ck-content {
-    height: 400px;
+  height: 400px;
+}
+
+.fixed-image {
+  height: 240px !important;
+  width: 240px !important;
 }
