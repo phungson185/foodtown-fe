@@ -7,89 +7,16 @@ import { ADMIN } from '../../constants/role'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { isEmpty } from 'lodash'
+import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Grid, Paper, Avatar, TextField, Button, Typography, Link } from '@material-ui/core'
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const Auth = () => {
-  const [signupInfo, setSignupInfo] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    email: '',
-    password: '',
-    repeatPassword: '',
-  })
-
-  const loginError = useRef({
-    email: '',
-    password: ''
-  })
-  const signupError = useRef({
-    password: ''
-  })
-
-  const [loginInfo, setLoginInfo] = useState({
-    email: '',
-    password: '',
-  })
-
   const [mode, setMode] = useState(0)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-  //  login validation
-  const validateSignup = useRef(false);
-  const handleValidateSignup = () => {
-    validateSignup.current = false;
-    if (!signupInfo.password.trim()) {
-      signupError.current.password = 'Thiếu password'
-    } else {
-      if (!passwordRegex.test(signupInfo.password)) {
-        signupError.current.password = 'Mật khẩu tối thiểu 8 ký tự, ít nhất 1 chữ hoa, 1 số, 1 ký tự đặc biệt'
-      } else {
-        validateSignup.current = true
-      }
-    }
-  }
-  //  login validation
-  const validateLogin = useRef(false);
-  const handleValidateLogin = () => {
-    validateLogin.current = false;
-    if (!loginInfo.email.trim() || !loginInfo.password.trim()) {
-      if (!loginInfo.email.trim()) {
-        loginError.current.email = 'Thiếu email'
-      }
-      if (!loginInfo.password.trim()) {
-        loginError.current.password = 'Thiếu password'
-      }
-    } else {
-      loginError.current.email = ''
-      if (!passwordRegex.test(loginInfo.password)) {
-        loginError.current.password = 'Mật khẩu tối thiểu 8 ký tự, ít nhất 1 chữ hoa, 1 số, 1 ký tự đặc biệt'
-      } else {
-        validateLogin.current = true
-      }
-    }
-  };
-
-  const handleTypingSignupInfo = (e) => {
-    const changeElement = e.target
-    setSignupInfo((prev) => {
-      return {
-        ...prev,
-        [changeElement.name]: changeElement.value,
-      }
-    })
-  }
-
-  const handleTypingLoginInfo = (e) => {
-    const changeElement = e.target
-    setLoginInfo((prev) => {
-      return {
-        ...prev,
-        [changeElement.name]: changeElement.value,
-      }
-    })
-  }
 
   const onLogin = () => {
     setMode(0)
@@ -104,134 +31,108 @@ const Auth = () => {
     navigate('/admin/login')
   }
 
-  const onSubmitLogin = (e) => {
-    e.preventDefault()
-    handleValidateLogin()
+  const signupInitialValues = {
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+  }
+  const signupValidationSchema = Yup.object().shape({
+    firstName: Yup.string().required("Required"),
+    lastName: Yup.string().required("Required"),
+    phoneNumber: Yup.string().required("Required"),
+    email: Yup.string().email('please enter valid email').required("Required"),
+    password: Yup.string().required("Required"),
+    repeatPassword: Yup.string()
+      .trim()
+      .required("Required")
+      .oneOf([Yup.ref('password')], "Không trùng"),
+  })
+  const onSubmitSignup = (values) => {
     try {
-      if (validateLogin.current)
-        dispatch(login(loginInfo, false, navigate))
-      else {
-        toast.dismiss()
-        Object.values(loginError.current).forEach((item) => {
-          if (isEmpty(item)) return
-          toast.error(item, {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        })
-      }
+      dispatch(signup(values, navigate))
       // navigate("/");
     } catch (error) {
-      toast.error(error, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      console.log(error)
     }
   }
 
-  const onSubmitSignup = (e) => {
-    e.preventDefault()
-    handleValidateSignup()
-    if (validateSignup.current) {
-      if (signupInfo.password !== signupInfo.repeatPassword) return
-      dispatch(signup(signupInfo, navigate))
-    }
-    else {
-      toast.dismiss()
-      Object.values(signupError.current).forEach((item) => {
-        if (isEmpty(item)) return
-        toast.error(item, {
-          position: "bottom-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      })
-    }
-    // navigate("/");
-  }
 
+  const loginInitialValues = {
+    email: '',
+    password: '',
+  }
+  const loginValidationSchema = Yup.object().shape({
+    email: Yup.string().email('please enter valid email').required("Required"),
+    password: Yup.string().required("Required")
+  })
+
+  const onSubmitLogin = (values, props) => {
+    try {
+      dispatch(login(values, false, navigate))
+      // navigate("/");
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const displayForm = () => {
     switch (mode) {
       case 1:
         return (
           <div className="signup-form-container">
-            <ToastContainer />
             <p className="auth-form-title">Chào mừng tới FoodTown</p>
             <p>Hãy đăng ký để cùng ăn với chúng tôi</p>
-            <div className="signup-form">
-              <div className="signup-name">
-                <input
-                  type="text"
-                  name="firstName"
-                  value={signupInfo.firstName}
-                  className="signup-firstname"
-                  placeholder="Họ đệm..."
-                  onChange={handleTypingSignupInfo}
-                  required
-                />
-                <input
-                  type="text"
-                  name="lastName"
-                  value={signupInfo.lastName}
-                  className="signup-lastname"
-                  placeholder="Tên..."
-                  onChange={handleTypingSignupInfo}
-                  required
-                />
-              </div>
-              <input
-                type="text"
-                name="phoneNumber"
-                value={signupInfo.phoneNumber}
-                placeholder="Số điện thoại..."
-                onChange={handleTypingSignupInfo}
-                required
-              />
-              <input
-                type="text"
-                name="email"
-                value={signupInfo.email}
-                placeholder="Email đăng nhập..."
-                onChange={handleTypingSignupInfo}
-                required
-              />
-              <input
-                type="password"
-                name="password"
-                value={signupInfo.password}
-                placeholder="Mật khẩu..."
-                onChange={handleTypingSignupInfo}
-                required
-              />
-              <input
-                type="password"
-                name="repeatPassword"
-                value={signupInfo.repeatPassword}
-                placeholder="Nhắc lại mật khẩu..."
-                onChange={handleTypingSignupInfo}
-                required
-              />
-            </div>
-            <button className="btn-transparent btn" onClick={onSubmitSignup}>
-              Đăng ký
-            </button>
+            <Formik initialValues={signupInitialValues} onSubmit={onSubmitSignup} validationSchema={signupValidationSchema}>
+              {({ errors, touched }) => (
+                <Form className="signup-form">
+                  <div className="signup-name">
+                    <Field
+                      type="text"
+                      name="firstName"
+                      className="signup-firstname"
+                      placeholder="Họ đệm..."
+                    />
+                    {errors.firstName && touched.firstName ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.firstName}</span> : null}
+                    <Field
+                      type="text"
+                      name="lastName"
+                      className="signup-lastname"
+                      placeholder="Tên..."
+                    />
+                    {errors.lastName && touched.lastName ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.lastName}</span> : null}
+                  </div>
+                  <Field
+                    type="text"
+                    name="phoneNumber"
+                    placeholder="Số điện thoại..."
+                  />
+                  {errors.phoneNumber && touched.phoneNumber ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.phoneNumber}</span> : null}
+                  <Field
+                    type="text"
+                    name="email"
+                    placeholder="Email đăng nhập..."
+                  />
+                  {errors.email && touched.email ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.email}</span> : null}
+                  <Field
+                    type="password"
+                    name="password"
+                    placeholder="Mật khẩu..."
+                  />
+                  {errors.password && touched.password ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.password}</span> : null}
+                  <Field
+                    type="password"
+                    name="repeatPassword"
+                    placeholder="Nhắc lại mật khẩu..."
+                  />
+                  {errors.repeatPassword && touched.repeatPassword ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.repeatPassword}</span> : null}
+                  <button type='submit' className="btn-transparent btn" >
+                    Đăng ký
+                  </button>
+                </Form>
+              )}
+            </Formik>
             <p onClick={onLogin} className="auth-mode">
               Tôi muốn đăng nhập
             </p>
@@ -240,34 +141,38 @@ const Auth = () => {
       case 2:
       default:
         return (
-          <form action="" className="login-form-container">
-            <ToastContainer />
+          <div action="" className="login-form-container">
             <p className="auth-form-title">Chào mừng tới FoodTown</p>
             <p>Hãy đăng nhập để cùng ăn với chúng tôi</p>
-            <div className="login-form">
-              <input
-                type="text"
-                name="email"
-                placeholder="Email..."
-                onChange={handleTypingLoginInfo}
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Mật khẩu..."
-                onChange={handleTypingLoginInfo}
-              />
-            </div>
-            <button className="btn-transparent btn" onClick={onSubmitLogin}>
-              Đăng nhập
-            </button>
+            <Formik initialValues={loginInitialValues} onSubmit={onSubmitLogin} validationSchema={loginValidationSchema}>
+              {({ errors, touched }) => (
+                <Form className="login-form">
+                  <Field
+                    type="text"
+                    name="email"
+                    placeholder="Email..."
+                  />
+                  {errors.email && touched.email ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.email}</span> : null}
+                  <Field
+                    type="password"
+                    name="password"
+                    placeholder="Mật khẩu..."
+                  />
+                  {errors.password && touched.password ? <span style={{ color: 'red', fontSize: '12px', textAlign: 'start' }}>{errors.password}</span> : null}
+                  <button type='submit' className="btn-transparent btn" >
+                    Đăng nhập
+                  </button>
+
+                </Form>
+              )}
+            </Formik>
             <p onClick={onSignUp} className="auth-mode">
               Bạn chưa có tài khoản?
             </p>
             <p onClick={onLoginAsAdmin} className="auth-mode">
               Đăng nhập như quản trị viên
             </p>
-          </form>
+          </div >
         )
     }
   }

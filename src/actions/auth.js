@@ -29,7 +29,7 @@ export const login = (formData, isLoginAsAdmin, navigate) => async (dispatch) =>
       navigate('/');
     }
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -61,5 +61,5 @@ export const logout = () => async (dispatch) => {
     dispatch({
       type: LOGOUT,
     });
-  } catch (error) {}
+  } catch (error) { }
 };
