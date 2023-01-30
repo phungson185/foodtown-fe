@@ -27,8 +27,7 @@ const Cart = ({ cart, setCart, user }) => {
 
   const handleOrder = async (newInfo) => {
     if (user) {
-      if (!newInfo.value) return;
-
+      if (!newInfo.addressDetail) return;
       const quantity = cart.reduce((total, order) => order.quantity + total, 0);
       const amount = cart.reduce((total, order) => order.quantity * order.price + total, 0);
       const newCart = cart.map(({ image, ...keepInfos }) => keepInfos);
@@ -37,7 +36,7 @@ const Cart = ({ cart, setCart, user }) => {
         amount,
         products: newCart,
         phoneNumber: newInfo.phoneNumber,
-        address: newInfo.value,
+        address: newInfo.addressDetail,
       });
 
       if (res.data.success) {

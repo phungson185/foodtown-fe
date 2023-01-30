@@ -96,7 +96,7 @@ const CreateBlogForm = ({ cancelCreatingBlog, cleanForm, updatingBlogContent, ty
         </Button>
         <p>{blogThumbnail ? blogThumbnail.name : 'No uploaded image'}</p>
       </div>
-      <img src={updatingBlogContent.thumbnail} alt="" className='fixed-image' />
+      {/* <img src={updatingBlogContent.thumbnail} alt="" className='fixed-image' /> */}
       <div className="blog__create-buttons">
         <Button variant="outlined" onClick={onCancelCreatingBlog}>
           CANCEL

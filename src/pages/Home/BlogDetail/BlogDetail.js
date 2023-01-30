@@ -68,78 +68,79 @@ const BlogDetail = ({ user }) => {
   };
 
   return (
-    <div className="blog__detail-container wrapper">
-      <div>
-        <div className="blog__detail-thumbnail-container">
-          <img className="blog__detail-thumbnail" src={image} alt="" />
-        </div>
-        <div className="blog__statistic-container">
-          {/* <div className='blog__statistic-left'>
+    blog !== null && (
+      <div className="blog__detail-container wrapper">
+        <div>
+          <div className="blog__detail-thumbnail-container">
+            <img className="blog__detail-thumbnail" src={image} alt="" />
+          </div>
+          <div className="blog__statistic-container">
+            {/* <div className='blog__statistic-left'>
                         <p>{blog?.viewCount} người đã xem</p>
                     </div> */}
-          <div className="blog__statistic-right">
-            <p>{blog?.likes?.length} thích</p>
-            <p>{commentCount} bình luận</p>
+            <div className="blog__statistic-right">
+              <p>{blog?.likes?.length} thích</p>
+              <p>{commentCount} bình luận</p>
+            </div>
           </div>
-        </div>
-        <div className="blog__react-container">
-          <div
-            className="blog__react-item"
-            onClick={isLiked ? onDislike : onLike}
-          >
-            {isLiked ? (
-              <>
-                <ThumbUpIcon />
-                <p>Bỏ thích</p>
-              </>
-            ) : (
-              <>
-                <ThumbUpOffAltIcon />
-                <p>Thích</p>
-              </>
-            )}
-          </div>
-          <div className="blog__react-item">
-            <ChatBubbleOutlineIcon />
-            <p>Bình luận</p>
-          </div>
-          {/* <div className='blog__react-item' onClick={onShareBlog}>
+          <div className="blog__react-container">
+            <div
+              className="blog__react-item"
+              onClick={isLiked ? onDislike : onLike}
+            >
+              {isLiked ? (
+                <>
+                  <ThumbUpIcon />
+                  <p>Bỏ thích</p>
+                </>
+              ) : (
+                <>
+                  <ThumbUpOffAltIcon />
+                  <p>Thích</p>
+                </>
+              )}
+            </div>
+            <div className="blog__react-item">
+              <ChatBubbleOutlineIcon />
+              <p>Bình luận</p>
+            </div>
+            {/* <div className='blog__react-item' onClick={onShareBlog}>
                         <RiShareForwardLine size="1.75rem" />
                         <p>Chia sẻ</p>
                     </div> */}
-        </div>
-        <div>
-          <div className="blog__detail__comment-container">
-            <TextField
-              id="outlined-textarea"
-              placeholder="Hãy cho Food Town biết suy nghĩ của bạn..."
-              multiline
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              size={"small"}
-              fullWidth
-            />
-            <div>
-              <Button
-                variant="contained"
-                className="blog__detail__comment-button"
-                onClick={onSubmitComment}
-              >
-                Gửi
-              </Button>
-            </div>
           </div>
-          <div className="blog__detail__comment-list">
-            {blog?.comments?.length ? (
-              <>
-                {blog?.comments.map((comment) => (
-                  <BlogComment comment={comment} />
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-            {/* <div className='blog_detail__comment-statistic'>
+          <div>
+            <div className="blog__detail__comment-container">
+              <TextField
+                id="outlined-textarea"
+                placeholder="Hãy cho Food Town biết suy nghĩ của bạn..."
+                multiline
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                size={"small"}
+                fullWidth
+              />
+              <div>
+                <Button
+                  variant="contained"
+                  className="blog__detail__comment-button"
+                  onClick={onSubmitComment}
+                >
+                  Gửi
+                </Button>
+              </div>
+            </div>
+            <div className="blog__detail__comment-list">
+              {blog?.comments?.length ? (
+                <>
+                  {blog?.comments.map((comment) => (
+                    <BlogComment comment={comment} />
+                  ))}
+                </>
+              ) : (
+                <></>
+              )}
+              {/* <div className='blog_detail__comment-statistic'>
                             {
                                 commentCount === blog?.comments?.length ?
                                 (
@@ -153,24 +154,25 @@ const BlogDetail = ({ user }) => {
                             }
                             <p>{blog?.comments?.length}/{commentCount}</p>
                         </div> */}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="blog__detail__name-container">
+            <div className="blog__detail__name-content">
+              <p>{blog?.name}</p>
+            </div>
+            <br></br>
+          </div>
+          <div className="blog__detail__content-container">
+            <div className="blog__detail__content">
+              {blog?.content ? htmlParser(blog?.content) : null}
+            </div>
+            <br></br>
           </div>
         </div>
       </div>
-      <div>
-        <div className="blog__detail__name-container">
-          <div className="blog__detail__name-content">
-            <p>{blog?.name}</p>
-          </div>
-          <br></br>
-        </div>
-        <div className="blog__detail__content-container">
-          <div className="blog__detail__content">
-            {blog?.content ? htmlParser(blog?.content) : null}
-          </div>
-          <br></br>
-        </div>
-      </div>
-    </div>
+    )
   );
 };
 

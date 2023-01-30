@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import './styles.css';
-import Paper from '@mui/material/Paper';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../actions/auth';
-import { Avatar, Button } from '@mui/material';
-import AddCircleSharpIcon from '@mui/icons-material/AddCircleSharp';
-import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import EditIcon from '@mui/icons-material/Edit';
+import React, { useState, useEffect } from "react";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import "./styles.css";
+import Paper from "@mui/material/Paper";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../actions/auth";
+import { Avatar, Button } from "@mui/material";
+import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
+import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import EditIcon from "@mui/icons-material/Edit";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -24,11 +24,11 @@ const Profile = () => {
   const [isShowModalEdit, setIsShowModalEdit] = useState(false);
 
   const [profile, setProfile] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
     address: [],
-    avatar: '',
+    avatar: "",
   });
 
   useEffect(() => {
@@ -81,13 +81,13 @@ const Profile = () => {
   }
 
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     width: 700,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    bgcolor: "background.paper",
+    border: "2px solid #000",
     boxShadow: 24,
     borderRadius: 2,
     p: 4,
@@ -153,12 +153,15 @@ const Profile = () => {
     <div className="profile-container">
       <div className="profile-gradient"></div>
       <div className="profile-content">
-        <Avatar sx={{ width: 240, height: 240, margin: '-50px 0 50px 0' }} src={user?.avatar}></Avatar>
+        <Avatar
+          sx={{ width: 240, height: 240, margin: "-50px 0 50px 0" }}
+          src={user?.avatar}
+        ></Avatar>
         <div className="form-wrapper">
           <Grid container rowSpacing={3} columnSpacing={2}>
             <Grid item xs={9}>
               <Button variant="contained" component="label">
-                Upload avatar
+                Tải ảnh
                 <input type="file" hidden onChange={onUploadTAvatar} />
               </Button>
             </Grid>
@@ -186,11 +189,11 @@ const Profile = () => {
                 />
               </Paper>
             </Grid>
-            <Grid item xs={9}>
+            {/* <Grid item xs={9}>
               <Paper>
                 <TextField
                   name="phoneNumber"
-                  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                  inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                   required
                   fullWidth
                   label="Số điện thoại"
@@ -198,49 +201,102 @@ const Profile = () => {
                   onChange={handleOnChangeProfile}
                 />
               </Paper>
-            </Grid>
+            </Grid> */}
             {addressAll?.map((address, index) => (
-              <Grid container item xs={12} rowSpacing={3} columnSpacing={2} key={index} alignItems="center">
-                <Grid item xs={3}>
+              <Grid
+                container
+                item
+                xs={12}
+                rowSpacing={3}
+                columnSpacing={2}
+                key={index}
+                alignItems="center"
+              >
+                <Grid item xs={1.5}>
                   <Paper>
-                    <TextField name="label" fullWidth label="Tên địa chỉ" value={address.label} disabled />
+                    <TextField
+                      name="label"
+                      fullWidth
+                      label="Tên địa chỉ"
+                      value={address.label}
+                      disabled
+                    />
                   </Paper>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={5}>
                   <Paper>
-                    <TextField name="position" fullWidth label="Địa chỉ" disabled value={address.position} />
+                    <TextField
+                      name="position"
+                      fullWidth
+                      label="Địa chỉ"
+                      disabled
+                      value={address.position}
+                    />
                   </Paper>
                 </Grid>
-                <Grid item xs={0.5}>
-                  <EditIcon className="btn-edit-address" onClick={() => handleEditAddress(index)} />
+                <Grid item xs={2}>
+                  <Paper>
+                    <TextField
+                      name="phoneNumber"
+                      fullWidth
+                      label="Số điện thoại"
+                      placeholder={profile.phoneNumber}
+                      disabled
+                      value={address.phoneNumber}
+                    />
+                  </Paper>
+                </Grid>
+                <Grid item >
+                  <EditIcon
+                    className="btn-edit-address"
+                    onClick={() => handleEditAddress(index)}
+                  />
                 </Grid>
                 <Grid item>
-                  <HighlightOffOutlinedIcon className="btn-delele-address" onClick={() => handleDeleteAddress(index)} />
+                  <HighlightOffOutlinedIcon
+                    className="btn-delele-address"
+                    onClick={() => handleDeleteAddress(index)}
+                  />
                 </Grid>
               </Grid>
             ))}
             <Grid item xs={9}>
               <button className="btn btn-add-address" onClick={handleOpenModal}>
                 <AddCircleSharpIcon size="medium" />
-                Add address
+                Thêm địa chỉ mới
               </button>
             </Grid>
             <Grid item xs={8}>
-              <Paper styles={{ boxShadow: 'unset' }}></Paper>
+              <Paper styles={{ boxShadow: "unset" }}></Paper>
             </Grid>
           </Grid>
-          <Button size="large" variant="contained" onClick={handleUpdateProfile}>
-            Update
+          <Button
+            size="large"
+            variant="contained"
+            onClick={handleUpdateProfile}
+          >
+            Cập nhật
           </Button>
           <Modal open={isShowModal} onClose={handleCloseModal}>
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h4" component="h2" style={{ marginBottom: '20px' }}>
-                Add Address
+              <Typography
+                id="modal-modal-title"
+                variant="h4"
+                component="h2"
+                style={{ marginBottom: "20px" }}
+              >
+                Thêm địa chỉ mới
               </Typography>
               <Grid container rowSpacing={3} columnSpacing={2}>
                 <Grid item xs={12}>
                   <Paper>
-                    <TextField name="label" onChange={handleOnChangeAddress} required fullWidth label="Tên địa chỉ" />
+                    <TextField
+                      name="label"
+                      onChange={handleOnChangeAddress}
+                      required
+                      fullWidth
+                      label="Tên địa chỉ"
+                    />
                   </Paper>
                 </Grid>
                 <Grid item xs={12}>
@@ -254,25 +310,59 @@ const Profile = () => {
                     />
                   </Paper>
                 </Grid>
-                <Grid container item xs={12} columnSpacing={1} justifyContent="flex-end">
+                <Grid item xs={12}>
+                  <Paper>
+                    <TextField
+                      name="phoneNumber"
+                      onChange={handleOnChangeAddress}
+                      required
+                      fullWidth
+                      label="Số điện thoại"
+                      placeholder={profile.phoneNumber}
+                    />
+                  </Paper>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  xs={12}
+                  columnSpacing={1}
+                  justifyContent="flex-end"
+                >
                   <Grid item justifyContent="flex-end">
-                    <Button size="large" onClick={handleCloseModal} style={{ marginRight: '10px' }}>
-                      Cancel
+                    <Button
+                      size="large"
+                      onClick={handleCloseModal}
+                      style={{ marginRight: "10px" }}
+                    >
+                      Hủy
                     </Button>
                   </Grid>
                   <Grid item justifyContent="flex-end">
-                    <Button size="large" variant="contained" onClick={handleAddAddress}>
-                      Add
+                    <Button
+                      size="large"
+                      variant="contained"
+                      onClick={handleAddAddress}
+                    >
+                      Thêm
                     </Button>
                   </Grid>
                 </Grid>
               </Grid>
             </Box>
           </Modal>
-          <Modal open={isShowModalEdit} onClose={() => setIsShowModalEdit(false)}>
+          <Modal
+            open={isShowModalEdit}
+            onClose={() => setIsShowModalEdit(false)}
+          >
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h4" component="h2" style={{ marginBottom: '20px' }}>
-                Edit Address
+              <Typography
+                id="modal-modal-title"
+                variant="h4"
+                component="h2"
+                style={{ marginBottom: "20px" }}
+              >
+                Sửa địa chỉ
               </Typography>
               <Grid container rowSpacing={3} columnSpacing={2}>
                 <Grid item xs={12}>
@@ -299,15 +389,42 @@ const Profile = () => {
                     />
                   </Paper>
                 </Grid>
-                <Grid container item xs={12} columnSpacing={1} justifyContent="flex-end">
+                <Grid item xs={12}>
+                  <Paper>
+                    <TextField
+                      name="phoneNumber"
+                      onChange={handleOnChangeAddressEdit}
+                      required
+                      fullWidth
+                      value={addressEdit?.phoneNumber}
+                      label="Số điện thoại"
+                      placeholder={profile.phoneNumber}
+                    />
+                  </Paper>
+                </Grid>
+                <Grid
+                  container
+                  item
+                  xs={12}
+                  columnSpacing={1}
+                  justifyContent="flex-end"
+                >
                   <Grid item justifyContent="flex-end">
-                    <Button size="large" onClick={() => setIsShowModalEdit(false)} style={{ marginRight: '10px' }}>
-                      Cancel
+                    <Button
+                      size="large"
+                      onClick={() => setIsShowModalEdit(false)}
+                      style={{ marginRight: "10px" }}
+                    >
+                      Hủy
                     </Button>
                   </Grid>
                   <Grid item justifyContent="flex-end">
-                    <Button size="large" variant="contained" onClick={handleUpdateAddress}>
-                      Update
+                    <Button
+                      size="large"
+                      variant="contained"
+                      onClick={handleUpdateAddress}
+                    >
+                      Cập nhật
                     </Button>
                   </Grid>
                 </Grid>
