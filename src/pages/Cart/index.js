@@ -5,8 +5,11 @@ import './styles.css';
 import { Dialog } from '@mui/material';
 import { CartPopup } from '../../components/popup';
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = ({ cart, setCart, user }) => {
+  const navigate = useNavigate();
+
   const increaseQuantity = (productIndex) => {
     setCart((prev) => {
       const currentCart = [...prev];
@@ -27,7 +30,10 @@ const Cart = ({ cart, setCart, user }) => {
 
   const handleOrder = async (newInfo) => {
     if (user) {
-      if (!newInfo.addressDetail) return;
+      if (!newInfo.addressDetail || !newInfo.phoneNumber) {
+        toast.error('Vui lòng nhập đủ thông tin');
+        return;
+      };
       const quantity = cart.reduce((total, order) => order.quantity + total, 0);
       const amount = cart.reduce((total, order) => order.quantity * order.price + total, 0);
       const newCart = cart.map(({ image, ...keepInfos }) => keepInfos);
@@ -42,6 +48,7 @@ const Cart = ({ cart, setCart, user }) => {
       if (res.data.success) {
         localStorage.removeItem('cart');
         setCart([]);
+        navigate('/order')
       }
     } else {
       toast.error('Bạn cần đăng nhập để tiếp tục');

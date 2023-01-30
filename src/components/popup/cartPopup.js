@@ -82,7 +82,7 @@ const CartPopup = ({ onSuccess, onClose }) => {
             name="addressDetail"
             placeholder="Địa chỉ"
             onChange={(e) =>
-              setNewInfo({ ...newInfo, addressLabel: e.target.value })
+              setNewInfo({ ...newInfo, addressDetail: e.target.value })
             }
             required
             sx={{ marginBottom: "10px" }}
