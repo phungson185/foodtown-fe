@@ -84,8 +84,7 @@ const Navbar = ({ user, cart, setCart }) => {
             <div className="dropdown-content-wrapper">
               {cart?.length > 0 ? (
                 cart?.map((order, index) => (
-                  <>
-                    {console.log(order)}
+                  <div key={index}>
                     <div className="dropdown-item" key={index}>
                       <img
                         className="dropdown-item-left"
@@ -106,7 +105,7 @@ const Navbar = ({ user, cart, setCart }) => {
                     <div className="dropdown-item-remove-button">
                       <button onClick={() => handleCancelProduct(index)}>Remove</button>
                     </div>
-                  </>
+                  </div>
                 ))
               ) : (
                 <span>Bạn chưa thêm giỏ hàng.</span>

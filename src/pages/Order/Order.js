@@ -1,18 +1,9 @@
-import {
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { getAllOrdersByUser } from "../../actions/order";
-import "./styles.css";
+import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getAllOrdersByUser } from '../../actions/order';
+import './styles.css';
 
 const Order = () => {
   const orders = useSelector((state) => state.order.orders);
@@ -25,67 +16,54 @@ const Order = () => {
   return (
     <div className="order__history-container">
       <div className="order__history-card">
-        <div className="order__history-label" style={{ marginBottom: "20px", fontWeight: 700, fontSize: '28px' }}>
+        <div className="order__history-label" style={{ marginBottom: '20px', fontWeight: 700, fontSize: '28px' }}>
           <p>Danh sách đơn hàng</p>
         </div>
         {orders.map((order, index) => {
           return (
             <>
-              <TableContainer
-                style={{ border: "solid 1px #333", marginBottom: "20px" }}
-              >
+              <TableContainer style={{ border: 'solid 1px #333', marginBottom: '20px' }}>
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>
-                        Ngày tạo
-                      </TableCell>
-                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>
-                        Số điện thoại
-                      </TableCell>
-                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>Tên món</TableCell>
-                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>Đơn giá</TableCell>
-                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>
-                        Số lượng
-                      </TableCell>
-                      <TableCell style={{ fontWeight: 600, fontSize: "18px" }}>
-                        Thành tiền
-                      </TableCell>
+                      <TableCell style={{ fontWeight: 600, fontSize: '18px' }}>Ngày tạo</TableCell>
+                      <TableCell style={{ fontWeight: 600, fontSize: '18px' }}>Số điện thoại</TableCell>
+                      <TableCell style={{ fontWeight: 600, fontSize: '18px' }}>Tên món</TableCell>
+                      <TableCell style={{ fontWeight: 600, fontSize: '18px' }}>Đơn giá</TableCell>
+                      <TableCell style={{ fontWeight: 600, fontSize: '18px' }}>Số lượng</TableCell>
+                      <TableCell style={{ fontWeight: 600, fontSize: '18px' }}>Thành tiền</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {order?.products?.map((item, index) => {
                       return (
-                        <TableRow>
+                        <TableRow key={index}>
                           {index === 0 ? (
-                            <TableCell style={{fontSize: "16px"}}>
-                              {order?.createdAt?.substring(
-                                0,
-                                order?.createdAt?.indexOf("T")
-                              )}
+                            <TableCell style={{ fontSize: '16px' }}>
+                              {order?.createdAt?.substring(0, order?.createdAt?.indexOf('T'))}
                             </TableCell>
                           ) : (
                             <TableCell></TableCell>
                           )}
                           {index === 0 ? (
-                            <TableCell style={{fontSize: "16px"}}>{order?.phoneNumber}</TableCell>
+                            <TableCell style={{ fontSize: '16px' }}>{order?.phoneNumber}</TableCell>
                           ) : (
                             <TableCell></TableCell>
                           )}
-                          <TableCell style={{fontSize: "16px"}}>{item?.name}</TableCell>
-                          <TableCell style={{fontSize: "16px"}}>{item?.price}</TableCell>
-                          <TableCell style={{fontSize: "16px"}}>{item?.quantity}</TableCell>
-                          <TableCell style={{fontSize: "16px"}}>{item?.price * item?.quantity}</TableCell>
+                          <TableCell style={{ fontSize: '16px' }}>{item?.name}</TableCell>
+                          <TableCell style={{ fontSize: '16px' }}>{item?.price}</TableCell>
+                          <TableCell style={{ fontSize: '16px' }}>{item?.quantity}</TableCell>
+                          <TableCell style={{ fontSize: '16px' }}>{item?.price * item?.quantity}</TableCell>
                         </TableRow>
                       );
                     })}
                   </TableBody>
                   <div
                     style={{
-                      display: "flex",
-                      gap: "10px",
-                      margin: "10px",
-                      flexDirection: "column",
+                      display: 'flex',
+                      gap: '10px',
+                      margin: '10px',
+                      flexDirection: 'column',
                     }}
                   >
                     <div>
@@ -100,15 +78,13 @@ const Order = () => {
                       <span>Trạng thái: </span>
                       <p
                         style={{
-                          color: order?.status ? "green" : "red",
+                          color: order?.status ? 'green' : 'red',
                         }}
                       >
-                        {order?.status ? "Đã thanh toán" : "Chưa thanh toán"}
+                        {order?.status ? 'Đã thanh toán' : 'Chưa thanh toán'}
                       </p>
                     </div>
-                    <p
-                      style={{ fontWeight: 600 }}
-                    >{`Tổng: ${order?.amount}vnd`}</p>
+                    <p style={{ fontWeight: 600 }}>{`Tổng: ${order?.amount}vnd`}</p>
                   </div>
                 </Table>
               </TableContainer>

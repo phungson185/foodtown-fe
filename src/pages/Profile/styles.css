@@ -9,7 +9,7 @@
 }
 
 .profile-content {
-  padding: 0 20rem;
+  padding: 0 20rem 2rem;
 }
 
 .profile-avatar {
@@ -20,4 +20,37 @@
   object-fit: cover;
   outline: unset;
   margin-bottom: -30px;
+}
+
+.btn-add-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  color: black;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-add-address:hover {
+  border-color: #1976d2;
+  background-color: rgb(232, 232, 232, 0.5);
+}
+
+.btn-add-address svg {
+  color: #1976d2;
+  margin-right: 5px;
+}
+
+.btn-delele-address,
+.btn-edit-address {
+  cursor: pointer;
+}
+
+.btn-delele-address:hover,
+.btn-edit-address:hover {
+  color: #1976d2;
 }
