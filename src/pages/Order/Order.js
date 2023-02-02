@@ -26,6 +26,8 @@ import { useDispatch } from 'react-redux'
 import { getAllOrdersByUser } from '../../actions/order'
 import './styles.css'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import { createPayment } from '../../api'
+import { OrderStatusType } from '../../utils/enum'
 
 const style = {
   position: 'absolute',
@@ -47,6 +49,8 @@ const Order = () => {
   const [payment, setPayment] = useState({
     paymentName: `${user?.lastName} ${user?.firstName}`,
   })
+
+  const [selectedOrder, setSelectedOrder] = useState()
 
   const handleChange = (event) => {
     setValue(event.target.value)
@@ -70,8 +74,29 @@ const Order = () => {
     })
   }
 
-  const handleSubmitPayment = () => {
-    console.log(payment)
+  const handleSubmitPayment = async () => {
+    const res = await createPayment({
+      amount: selectedOrder.amount,
+      orderId: selectedOrder._id,
+      paid: payment.paymentPaid,
+      bank: payment.paymentBank,
+    })
+
+    console.log(res)
+  }
+
+  const renderPaymentStatus = (status, amount) => {
+    if (status === OrderStatusType.ORDER_PAYMENT_PENDING) {
+      return 'Đang chờ thanh toán'
+    } else if (status === OrderStatusType.ORDER_PAYMENT_COMPLETED) {
+      return 'Đã thanh toán'
+    } else if (status === OrderStatusType.ORDER_PAYMENT_LACK) {
+      return `Còn phải thanh toán ${amount}`
+    } else if (status === OrderStatusType.ORDER_CANCEL) {
+      return 'Đã hủy'
+    } else if (status === OrderStatusType.ORDER_FAIL) {
+      return 'Đơn thất bại'
+    }
   }
 
   return (
@@ -156,16 +181,25 @@ const Order = () => {
                               <span>Trạng thái: </span>
                               <p
                                 style={{
-                                  color: order?.status ? 'green' : 'red',
+                                  fontWeight: 'bold',
                                 }}
                               >
-                                {order?.status ? 'Đã thanh toán' : 'Chưa thanh toán'}
+                                {renderPaymentStatus(
+                                  order?.status,
+                                  order?.amountLack
+                                ).toUpperCase()}
                               </p>
                             </div>
                             <p style={{ fontWeight: 600 }}>{`Tổng: ${order?.amount} VND`}</p>
                           </div>
 
-                          <Button variant="outlined" onClick={() => setIsShowModal(true)}>
+                          <Button
+                            variant="outlined"
+                            onClick={() => {
+                              setSelectedOrder(order)
+                              setIsShowModal(false)
+                            }}
+                          >
                             Thanh toán
                           </Button>
                         </div>
@@ -288,6 +322,17 @@ const Order = () => {
                           required
                           fullWidth
                           label="Số tài khoản người gửi"
+                        />
+                      </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Paper>
+                        <TextField
+                          name="paymentPaid"
+                          onChange={handleChangePayment}
+                          required
+                          fullWidth
+                          label="Số tiền thanh toán"
                         />
                       </Paper>
                     </Grid>
