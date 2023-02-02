@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getAllPayments } from '../../../api'
 import { MdSearchOff } from 'react-icons/md'
 import { Typography } from '@mui/material'
+import Payment from '../Payment/Payment'
 
 const Dashboard = () => {
   const [payments, setPayments] = useState([])
@@ -27,7 +28,7 @@ const Dashboard = () => {
     <>
       <div className="blogs__management-list">
         {payments?.map((payment) => (
-          <div>{payment._id}</div>
+          <Payment payment={payment} getPayments={getPayments} />
         ))}
       </div>
     </>

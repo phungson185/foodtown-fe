@@ -46,11 +46,10 @@ const Order = () => {
   const dispatch = useDispatch()
   const [isShowModal, setIsShowModal] = useState(false)
   const [value, setValue] = useState('ibank')
+  const [selectedOrder, setSelectedOrder] = useState()
   const [payment, setPayment] = useState({
     paymentName: `${user?.lastName} ${user?.firstName}`,
   })
-
-  const [selectedOrder, setSelectedOrder] = useState()
 
   const handleChange = (event) => {
     setValue(event.target.value)
@@ -75,14 +74,24 @@ const Order = () => {
   }
 
   const handleSubmitPayment = async () => {
-    const res = await createPayment({
-      amount: selectedOrder.amount,
-      orderId: selectedOrder._id,
-      paid: payment.paymentPaid,
-      bank: payment.paymentBank,
-    })
+    if (!payment.paymentBank) {
+      toast.warning('Vui lòng điền số tài khoản')
+    } else {
+      const res = await createPayment({
+        amount: selectedOrder.amount,
+        orderId: selectedOrder._id,
+        paid: payment.paymentPaid,
+        bank: payment.paymentBank,
+      })
 
-    console.log(res)
+      if (res.data.success) {
+        setIsShowModal(false)
+        setSelectedOrder(undefined)
+        toast.success('Thanh toán thành công')
+      } else {
+        toast.warning('Thanh toán thất bại')
+      }
+    }
   }
 
   const renderPaymentStatus = (status, amount) => {
@@ -197,7 +206,8 @@ const Order = () => {
                             variant="outlined"
                             onClick={() => {
                               setSelectedOrder(order)
-                              setIsShowModal(false)
+                              setPayment({ ...payment, paymentPaid: order.amount })
+                              setIsShowModal(true)
                             }}
                           >
                             Thanh toán
@@ -215,6 +225,7 @@ const Order = () => {
                 onBackdropClick={() => {
                   setPayment({
                     paymentName: `${user?.lastName} ${user?.firstName}`,
+                    paymentPaid: order?.amount,
                   })
                 }}
               >
@@ -332,6 +343,7 @@ const Order = () => {
                           onChange={handleChangePayment}
                           required
                           fullWidth
+                          value={payment.paymentPaid}
                           label="Số tiền thanh toán"
                         />
                       </Paper>
@@ -341,7 +353,10 @@ const Order = () => {
                         <Button
                           size="large"
                           onClick={() => {
-                            setPayment({ paymentName: `${user?.lastName} ${user?.firstName}` })
+                            setPayment({
+                              paymentName: `${user?.lastName} ${user?.firstName}`,
+                              paymentPaid: order?.amount,
+                            })
                             setIsShowModal(false)
                           }}
                           style={{ marginRight: '10px' }}

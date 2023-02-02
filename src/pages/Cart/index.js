@@ -1,71 +1,71 @@
-import React from 'react';
-import QRCODE_IMAGE from '../../assets/momo-qr-code.png';
-import { createOrder } from '../../api';
-import './styles.css';
-import { Dialog } from '@mui/material';
-import { CartPopup } from '../../components/popup';
-import { toast, ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import QRCODE_IMAGE from '../../assets/momo-qr-code.png'
+import { createOrder } from '../../api'
+import './styles.css'
+import { Dialog } from '@mui/material'
+import { CartPopup } from '../../components/popup'
+import { toast, ToastContainer } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = ({ cart, setCart, user }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const increaseQuantity = (productIndex) => {
     setCart((prev) => {
-      const currentCart = [...prev];
-      currentCart[productIndex].quantity++;
-      localStorage.setItem('cart', JSON.stringify(currentCart));
-      return currentCart;
-    });
-  };
+      const currentCart = [...prev]
+      currentCart[productIndex].quantity++
+      localStorage.setItem('cart', JSON.stringify(currentCart))
+      return currentCart
+    })
+  }
 
   const decreaseQuantity = (productIndex) => {
     setCart((prev) => {
-      const currentCart = [...prev];
-      if (currentCart[productIndex].quantity > 0) currentCart[productIndex].quantity -= 1;
-      localStorage.setItem('cart', JSON.stringify(currentCart));
-      return currentCart;
-    });
-  };
+      const currentCart = [...prev]
+      if (currentCart[productIndex].quantity > 0) currentCart[productIndex].quantity -= 1
+      localStorage.setItem('cart', JSON.stringify(currentCart))
+      return currentCart
+    })
+  }
 
   const handleOrder = async (newInfo) => {
     if (user) {
       if (!newInfo.addressDetail || !newInfo.phoneNumber) {
-        toast.error('Vui lòng nhập đủ thông tin');
-        return;
-      };
-      const quantity = cart.reduce((total, order) => order.quantity + total, 0);
-      const amount = cart.reduce((total, order) => order.quantity * order.price + total, 0);
-      const newCart = cart.map(({ image, ...keepInfos }) => keepInfos);
+        toast.error('Vui lòng nhập đủ thông tin')
+        return
+      }
+
+      const amount = cart.reduce((total, order) => order.quantity * order.price + total, 0)
+      const newCart = cart.map(({ image, ...keepInfos }) => keepInfos)
       const res = await createOrder({
         userId: user._id,
         amount,
         products: newCart,
         phoneNumber: newInfo.phoneNumber,
         address: newInfo.addressDetail,
-      });
+      })
 
       if (res.data.success) {
-        localStorage.removeItem('cart');
-        setCart([]);
+        localStorage.removeItem('cart')
+        setCart([])
         navigate('/order')
       }
     } else {
-      toast.error('Bạn cần đăng nhập để tiếp tục');
-      return;
+      toast.error('Bạn cần đăng nhập để tiếp tục')
+      return
     }
-  };
+  }
 
   const handleCancelProduct = (productIndex) => {
     setCart((prev) => {
-      const newCart = [...prev];
-      newCart.splice(productIndex, 1);
-      localStorage.setItem('cart', JSON.stringify(newCart));
-      return newCart;
-    });
-  };
+      const newCart = [...prev]
+      newCart.splice(productIndex, 1)
+      localStorage.setItem('cart', JSON.stringify(newCart))
+      return newCart
+    })
+  }
 
-  const [openPopup, setOpenPopup] = React.useState(false);
+  const [openPopup, setOpenPopup] = React.useState(false)
 
   return (
     <>
@@ -98,11 +98,17 @@ const Cart = ({ cart, setCart, user }) => {
                           <div className="cart__history-info__item">
                             <p className="cart__history-subtitle">Số lượng</p>
                             <div>
-                              <p className="product__quantity-btn m-0 p-1" onClick={() => decreaseQuantity(index)}>
+                              <p
+                                className="product__quantity-btn m-0 p-1"
+                                onClick={() => decreaseQuantity(index)}
+                              >
                                 &#8722;
                               </p>
                               <p className="cart__history-title">{order?.quantity}</p>
-                              <p className="product__quantity-btn m-0 p-1" onClick={() => increaseQuantity(index)}>
+                              <p
+                                className="product__quantity-btn m-0 p-1"
+                                onClick={() => increaseQuantity(index)}
+                              >
                                 &#43;
                               </p>
                             </div>
@@ -111,7 +117,9 @@ const Cart = ({ cart, setCart, user }) => {
                         <div className="cart__history-info-column">
                           <div className="cart__history-info__item cart__history-info__total">
                             <p className="cart__history-subtitle">Tổng</p>
-                            <p className="cart__history-title">{order?.quantity * order?.price} VND</p>
+                            <p className="cart__history-title">
+                              {order?.quantity * order?.price} VND
+                            </p>
                           </div>
                         </div>
                         <div className="cart__history-info-column">
@@ -126,7 +134,7 @@ const Cart = ({ cart, setCart, user }) => {
                     </div>
                     <hr />
                   </div>
-                );
+                )
               })}
               <div className="cart__history-total">
                 Tổng tiền:{' '}
@@ -143,7 +151,9 @@ const Cart = ({ cart, setCart, user }) => {
 
         <div className="cart__payment">
           <img className="cart__payment-qr" src={QRCODE_IMAGE} alt="" />
-          <p className="cart__payment-subtitle">Hãy chuyển khoản bằng cách quét mã QR để thanh toán đặt hàng</p>
+          <p className="cart__payment-subtitle">
+            Hãy chuyển khoản bằng cách quét mã QR để thanh toán đặt hàng
+          </p>
         </div>
       </div>
       {cart.length > 0 && (
@@ -158,7 +168,7 @@ const Cart = ({ cart, setCart, user }) => {
         <CartPopup onClose={() => setOpenPopup(false)} onSuccess={handleOrder} />
       </Dialog>
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

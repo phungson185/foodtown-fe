@@ -71,3 +71,4 @@ export const createOrder = (order) => API.post('/orders', order)
 
 export const getAllPayments = () => API.get('/payments')
 export const createPayment = (payment) => API.post('/payments', payment)
+export const updatePayment = (payment) => API.put('/payments', payment)
