@@ -126,7 +126,7 @@ const Cart = ({ cart, setCart, user }) => {
                           <div className="cart__history-info__item cart__history-info__total">
                             <p className="cart__history-subtitle"></p>
                             <p className="cart__history-title">
-                              <button onClick={() => handleCancelProduct(index)}>Remove</button>
+                              <button onClick={() => handleCancelProduct(index)}>Xóa</button>
                             </p>
                           </div>
                         </div>

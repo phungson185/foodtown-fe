@@ -103,7 +103,7 @@ const Navbar = ({ user, cart, setCart }) => {
                       </div>
                     </div>
                     <div className="dropdown-item-remove-button">
-                      <button onClick={() => handleCancelProduct(index)}>Remove</button>
+                      <button onClick={() => handleCancelProduct(index)}>Xóa</button>
                     </div>
                   </div>
                 ))

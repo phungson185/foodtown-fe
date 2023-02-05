@@ -219,7 +219,7 @@ const Profile = () => {
                       fullWidth
                       label="Tên địa chỉ"
                       value={address.label}
-                      disabled
+                      // disabled
                     />
                   </Paper>
                 </Grid>
@@ -229,7 +229,7 @@ const Profile = () => {
                       name="position"
                       fullWidth
                       label="Địa chỉ"
-                      disabled
+                      // disabled
                       value={address.position}
                     />
                   </Paper>
@@ -240,8 +240,7 @@ const Profile = () => {
                       name="phoneNumber"
                       fullWidth
                       label="Số điện thoại"
-                      placeholder={profile.phoneNumber}
-                      disabled
+                      // disabled
                       value={address.phoneNumber}
                     />
                   </Paper>
@@ -318,7 +317,6 @@ const Profile = () => {
                       required
                       fullWidth
                       label="Số điện thoại"
-                      placeholder={profile.phoneNumber}
                     />
                   </Paper>
                 </Grid>

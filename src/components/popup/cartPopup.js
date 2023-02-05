@@ -3,6 +3,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
   TextField,
 } from "@mui/material";
 import { useState } from "react";
@@ -73,35 +74,38 @@ const CartPopup = ({ onSuccess, onClose }) => {
           </div>
         </div>
 
-        <div>
-          <TextField
-            type="text"
-            label="Địa chỉ"
-            defaultValue={newInfo.addressDetail}
-            value={newInfo.addressDetail}
-            name="addressDetail"
-            placeholder="Địa chỉ"
-            onChange={(e) =>
-              setNewInfo({ ...newInfo, addressDetail: e.target.value })
-            }
-            required
-            sx={{ marginBottom: "10px" }}
-          />
-        </div>
-        <div>
-          <TextField
-            type="text"
-            label="Số điện thoại"
-            defaultValue={newInfo.phoneNumber}
-            value={newInfo.phoneNumber}
-            name="phoneNumber"
-            placeholder="Số điện thoại"
-            onChange={(e) =>
-              setNewInfo({ ...newInfo, phoneNumber: e.target.value })
-            }
-            required
-          />
-        </div>
+        <Grid container spacing={2} sx={{marginTop: '20px'}}>
+          <Grid item xs={7}>
+            <TextField
+              type="text"
+              fullWidth
+              label="Địa chỉ"
+              defaultValue={newInfo.addressDetail}
+              value={newInfo.addressDetail}
+              name="addressDetail"
+              placeholder="Địa chỉ"
+              onChange={(e) =>
+                setNewInfo({ ...newInfo, addressDetail: e.target.value })
+              }
+              required
+              sx={{ marginBottom: "10px" }}
+            />
+          </Grid>
+          <Grid item xs={5}>
+            <TextField
+              type="text"
+              label="Số điện thoại"
+              // defaultValue={newInfo.phoneNumber}
+              value={newInfo.phoneNumber}
+              name="phoneNumber"
+              placeholder="Số điện thoại"
+              onChange={(e) =>
+                setNewInfo({ ...newInfo, phoneNumber: e.target.value })
+              }
+              required
+            />
+          </Grid>
+        </Grid>
       </DialogContent>
 
       <DialogActions>
