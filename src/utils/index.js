@@ -1,7 +1,7 @@
-import * as time from "./time";
+import * as time from './time'
 
 const util = {
-    time
+  time,
 }
 
-export default util;
+export default util

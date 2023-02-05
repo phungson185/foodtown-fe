@@ -26,6 +26,8 @@ import { useDispatch } from 'react-redux'
 import { getAllOrdersByUser } from '../../actions/order'
 import './styles.css'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import { createPayment } from '../../api'
+import { OrderStatusType } from '../../utils/enum'
 
 const style = {
   position: 'absolute',
@@ -44,6 +46,7 @@ const Order = () => {
   const dispatch = useDispatch()
   const [isShowModal, setIsShowModal] = useState(false)
   const [value, setValue] = useState('ibank')
+  const [selectedOrder, setSelectedOrder] = useState()
   const [payment, setPayment] = useState({
     paymentName: `${user?.lastName} ${user?.firstName}`,
   })
@@ -70,8 +73,39 @@ const Order = () => {
     })
   }
 
-  const handleSubmitPayment = () => {
-    console.log(payment)
+  const handleSubmitPayment = async () => {
+    if (!payment.paymentBank) {
+      toast.warning('Vui lòng điền số tài khoản')
+    } else {
+      const res = await createPayment({
+        amount: selectedOrder.amount,
+        orderId: selectedOrder._id,
+        paid: payment.paymentPaid,
+        bank: payment.paymentBank,
+      })
+
+      if (res.data.success) {
+        setIsShowModal(false)
+        setSelectedOrder(undefined)
+        toast.success('Thanh toán thành công')
+      } else {
+        toast.warning('Thanh toán thất bại')
+      }
+    }
+  }
+
+  const renderPaymentStatus = (status, amount) => {
+    if (status === OrderStatusType.ORDER_PAYMENT_PENDING) {
+      return 'Đang chờ thanh toán'
+    } else if (status === OrderStatusType.ORDER_PAYMENT_COMPLETED) {
+      return 'Đã thanh toán'
+    } else if (status === OrderStatusType.ORDER_PAYMENT_LACK) {
+      return `Còn phải thanh toán ${amount}`
+    } else if (status === OrderStatusType.ORDER_CANCEL) {
+      return 'Đã hủy'
+    } else if (status === OrderStatusType.ORDER_FAIL) {
+      return 'Đơn thất bại'
+    }
   }
 
   return (
@@ -156,16 +190,26 @@ const Order = () => {
                               <span>Trạng thái: </span>
                               <p
                                 style={{
-                                  color: order?.status ? 'green' : 'red',
+                                  fontWeight: 'bold',
                                 }}
                               >
-                                {order?.status ? 'Đã thanh toán' : 'Chưa thanh toán'}
+                                {renderPaymentStatus(
+                                  order?.status,
+                                  order?.amountLack
+                                ).toUpperCase()}
                               </p>
                             </div>
                             <p style={{ fontWeight: 600 }}>{`Tổng: ${order?.amount} VND`}</p>
                           </div>
 
-                          <Button variant="outlined" onClick={() => setIsShowModal(true)}>
+                          <Button
+                            variant="outlined"
+                            onClick={() => {
+                              setSelectedOrder(order)
+                              setPayment({ ...payment, paymentPaid: order.amount })
+                              setIsShowModal(true)
+                            }}
+                          >
                             Thanh toán
                           </Button>
                         </div>
@@ -181,6 +225,7 @@ const Order = () => {
                 onBackdropClick={() => {
                   setPayment({
                     paymentName: `${user?.lastName} ${user?.firstName}`,
+                    paymentPaid: order?.amount,
                   })
                 }}
               >
@@ -291,12 +336,27 @@ const Order = () => {
                         />
                       </Paper>
                     </Grid>
+                    <Grid item xs={12}>
+                      <Paper>
+                        <TextField
+                          name="paymentPaid"
+                          onChange={handleChangePayment}
+                          required
+                          fullWidth
+                          value={payment.paymentPaid}
+                          label="Số tiền thanh toán"
+                        />
+                      </Paper>
+                    </Grid>
                     <Grid container item xs={12} columnSpacing={1} justifyContent="flex-end">
                       <Grid item justifyContent="flex-end">
                         <Button
                           size="large"
                           onClick={() => {
-                            setPayment({ paymentName: `${user?.lastName} ${user?.firstName}` })
+                            setPayment({
+                              paymentName: `${user?.lastName} ${user?.firstName}`,
+                              paymentPaid: order?.amount,
+                            })
                             setIsShowModal(false)
                           }}
                           style={{ marginRight: '10px' }}
