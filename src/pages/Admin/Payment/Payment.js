@@ -43,7 +43,7 @@ const Payment = ({ payment, getPayments }) => {
   return (
     <div className="product__management-container">
       <div className="product__management-left">
-        <Typography variant="h5">Payment ID: {payment._id}</Typography>
+        <Typography variant="h5">Mã thanh toán: {payment._id}</Typography>
         <Typography>
           <span style={{ fontWeight: 600 }}>Tổng</span>: {payment.amount} VND
         </Typography>
